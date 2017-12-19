@@ -1,0 +1,134 @@
+<html lang="en" layout:decorator="/layout">
+<head>
+</head>
+<body>
+	<div>
+		<div layout:fragment="sidebar">
+		<!-- 	<div class="panel panel-primary">
+				<div class="panel-body">
+					<h3>Advanced search</h3>
+					<hr />
+					<div class="form-group">
+						<label for="specialization" class="control-label">Specialization</label>
+						<hc-combo-div id="specialization" name="specialization"
+							ng-model="search.specialization" ng-change="search(search, 0)"
+							ng-init="specialization = search.specialization"
+							url="/rest/healthcare/specializations"
+							class="form-control col-sm-3"></hc-combo-div>
+
+
+					</div>
+
+					<div class="form-group">
+						<label for="city" class="control-label">City</label>
+						<hc-combo-div id="city" name="city" ng-model="search.city"
+							url="/cities" ng-change="search(search, 0)"
+							class="form-control col-sm-3"></hc-combo-div>
+					</div>
+
+					<div class="form-group rating">
+						<label for="ratings" class="control-label">Ratings</label>
+						<p href="#" id="ratings" class="form-control">
+							<sapn ng-repeat="p in ratingPointsArr"> <a
+								ng-click="ratingPointchnage(false,$index, search)" href="#"
+								ng-attr-title="test" ng-if="p.isActive"><span
+								class="glyphicon glyphicon-star"></span></a> <a href="#"
+								ng-click="ratingPointchnage(true,$index+1 ,search)"
+								ng-attr-title="test" ng-if="!p.isActive"><span
+								class="glyphicon glyphicon-star-empty"></span></a> &nbsp;</sapn>
+
+						</p>
+
+						<h4>
+							<a href="#" ng-click="search(search, 1)"> <span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span>
+							</a>
+						</h4>
+						<h4>
+							<a href="#" ng-click="search(search, 2)"> <span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span>
+							</a>
+						</h4>
+						<h4>
+							<a href="#" ng-click="search(search, 3)"> <span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span>
+							</a>
+						</h4>
+						<h4>
+							<a href="#" ng-click="search(search, 4)"> <span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star-empty"></span>
+							</a>
+						</h4>
+						<h4>
+							<a href="#" ng-click="search(search, 5)"> <span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span> &nbsp;<span
+								class="glyphicon glyphicon-star"></span>
+							</a>
+						</h4>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<div layout:fragment="content">
+			<p class="pull-right visible-xs">
+				<button type="button" class="btn btn-primary btn-xs"
+					data-toggle="offcanvas">Toggle nav</button>
+			</p>
+			<div class="jumbotron">
+				<div class="form-group">
+					<input type="text" class="form-control input-lg"
+						ng-model="search.main"
+						uib-typeahead="key for key in getSearchKey($viewValue) | limitTo:10"
+						placeholder="Search doctor by Name, Speclization, City"
+						id="inputSuccess2"
+						typeahead-on-select="doSimpleSearch($item, $model, $label, $event, 0)" />
+					<span class="glyphicon glyphicon-search form-control-feedback"></span>
+				</div>
+			</div>
+			<div class="se-pre-con"></div>
+			<blockquote>
+				<p class="text-uppercase">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Integer posuere erat a ante.</p>
+				<footer>
+					Someone famous in <cite title="Source Title">Source Title</cite>
+				</footer>
+			</blockquote>
+			<h4>
+				This list contains <span class="badge">{{simpleSearchResults.length}}</span>
+				result(s)
+			</h4>
+			<!-- <span sec:authorize="isAuthenticated()"> 
+				<span th:text="${#authentication.getPrincipal().getUser().getFirstName()}"></span>
+				<span th:text="${#authentication.getPrincipal().getUser().getLastName()}"></span>
+				<span th:text="${#authentication.getPrincipal().getUser().getId()}"></span>
+				jjkjjkj
+			</span> 
+			<span sec:authorize="!isAuthenticated()"> tsttt </span>
+
+			<h1 th:text="${#authentication.name}">Hello
+				[[${#httpServletRequest.remoteUser}]]!</h1> -->
+
+			
+		</div>
+	</div>
+</body>
+</html>
