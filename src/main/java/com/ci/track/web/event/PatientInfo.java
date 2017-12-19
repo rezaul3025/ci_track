@@ -65,5 +65,8 @@ public class PatientInfo {
 		this.address = address;
 	}
 
-	
+	@Override
+	public String toString(){
+		return this.firstName+" "+this.lastName+" "+this.dob+" "+this.address;
+	}
 }
