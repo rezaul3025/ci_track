@@ -11,4 +11,9 @@ public class CiTrackController {
 	public String moveLandingPage(Model model){
 		return "index";
 	}
+	
+	@RequestMapping(value="/patient/add")
+	public String moveAddPatientPage(Model model){
+		return "/patient/add";
+	}
 }

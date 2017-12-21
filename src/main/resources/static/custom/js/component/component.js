@@ -5,7 +5,7 @@ module.directive('ciTextField', [function () {
             replace: true,
             template: function (element, attrs) {
                 var form = ci.getProperty(attrs, "ciForm", "textFieldForm");
-                var field = ci.getProperty(attrs, "ciField", "name");
+                var field = ci.getProperty(attrs, "ciField", attrs.name);
                 var errors = ci.getProperty(attrs, "ciErrorMessages", "textFieldErrorMessage");
                 return ciDirective.inputFieldTemplate(form, field, errors, "ci-text=''", attrs.placeholder, element);
             }
