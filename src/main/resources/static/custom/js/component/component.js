@@ -5,7 +5,7 @@ module.directive('ciTextField', [function () {
             replace: true,
             template: function (element, attrs) {
                 var form = ci.getProperty(attrs, "ciForm", "textFieldForm");
-                var field = ci.getProperty(attrs, "ciField", attrs.id);
+                var field = ci.getProperty(attrs, "ciField", "name");
                 var errors = ci.getProperty(attrs, "ciErrorMessages", "textFieldErrorMessage");
                 return ciDirective.inputFieldTemplate(form, field, errors, "ci-text=''", attrs.placeholder, element);
             }
@@ -17,15 +17,10 @@ module.directive('ciText', ['ciUtilsService', '$parse', function (ciUtilsService
             restrict: 'A',
             require: 'ngModel',
             link: function (scope, element, attrs, ngModel) {
-
-            	ngModel.$validators.mandatory = function (value) {
-                    if (typeof value == 'undefined') {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
-                };
+            	//ngModel.$validators.mandatory = true;
+            	ngModel.$validators.mandatory = function(value){
+            		return ciUtilsService.mandatoryCheck(value);
+            	}
                 
                 /*ngModel.$validators.validFileCheck = function (value) {
                     if (typeof value == 'undefined') {

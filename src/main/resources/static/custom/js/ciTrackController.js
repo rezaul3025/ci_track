@@ -1,6 +1,9 @@
 //module = angular.module('ciTrackApp', ['ui.bootstrap']);
 module.controller('CiTrackController', ['$http', '$scope', '$window', '$controller', function ($http, $scope, $window, $controller) {
-		
+	 	
+		$controller('CoreController', {
+	        $scope: $scope
+	    });
 		
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");

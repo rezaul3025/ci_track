@@ -40,7 +40,7 @@ ciDirective ={
             var offsetTop = angular.element(element).prop('offsetTop')+48;
 	        return '<div>' + '<div ng-class="fieldClass(' + form + '.' + field + ')">'
 	            + '<input class="form-control" id="' + field + '" name="' + field + '"' + directive + ' ' + attributeString + '/>' + '</div>'
-	            + '<div class="metro" ng-messages="' + form + '.' + messageField + '.$error" multiple=""' + 'ng-messages-include="' + errorMessages + '" ' + 'ci-scope-init="field=' + form + '.' + messageField + '"' + 'ng-show="fieldInteracted(' + form + '.' + messageField + ')"'+ '"></div></div>' + '</div>';
+	            + '<div class="metro" ng-messages="' + form + '.' + messageField + '.$error" multiple="">' + '<div ng-messages-include="' + errorMessages + '" ' + 'ci-scope-init="field=' + form + '.' + messageField + '"' + 'ng-show="fieldInteracted(' + form + '.' + messageField + ')"'+ '"></div></div></div>' + '</div>';
 	    },
 	    inputAreaFieldTemplate: function (form, field, errorMessages, directive, placeholder, element) {
 	        var attributeString = ciDirective.convertAttributesToString(element, placeholder);
@@ -237,7 +237,7 @@ module.directive('ciScopeInit', function () {
         compile: function () {
             return {
                 pre: function (scope, element, attrs) {
-                    scope.$eval(attrs.cgScopeInit);
+                    scope.$eval(attrs.ciScopeInit);
                 }
             };
         }

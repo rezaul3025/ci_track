@@ -1,5 +1,5 @@
 // <![CDATA[
-module = angular.module('ciTrackApp', ['ui.bootstrap']);
+module = angular.module('ciTrackApp', ['ui.bootstrap','ngMessages']);
 module.factory('ciUtilsService', [ '$timeout', '$http', function($timeout, $http) {
 	return new UtilsService();
 } ]);
@@ -18,6 +18,22 @@ var UtilsService = (function(){
         	
         	return false;
         };
+        
+        this.mandatoryCheck = function(value){
+        	/*if (typeof value == 'undefined') {
+                return false;
+            }
+        	else */
+        	if(typeof value != 'undefined' && value == null){
+        		return false;
+        	}
+        	else if(typeof value != 'undefined' && value.length <= 0){
+        		return false;
+        	}
+            else {
+                return true;
+            }
+        }
 		
 	}
 	

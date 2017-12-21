@@ -89,8 +89,6 @@
 			</div> -->
 		</div>
 		<div layout:fragment="content">
-			<div
-			th:replace="/message/validation.error.message :: validationErrorMessage" />
 			
 			<p class="pull-right visible-xs">
 				<button type="button" class="btn btn-primary btn-xs"
@@ -98,7 +96,12 @@
 			</p>
 			<div class="jumbotron">
 				jlkk
-				<ci-text-field id="name" ci-form="bSignupForm" placeholder="enter name"  ng-model="name"/>
+				<ng-form name="textFieldForm">
+					<div
+			th:replace="/message/validation.error.message :: validationErrorMessage" />
+			
+					<ci-text-field placeholder="enter name"  ng-model="name" name="name"/>
+				</ng-form>
 				<div class="form-group">
 					<input type="text" class="form-control input-lg"
 						ng-model="search.main"
