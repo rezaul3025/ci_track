@@ -1,0 +1,1 @@
+INSERT INTO patient VALUES(1, 'TOM', 'MIA','2017-04-12','addd');
