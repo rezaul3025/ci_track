@@ -30,8 +30,14 @@ public class PatientRestController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public PatientInfo addInfo(@RequestBody PatientInfo patientInfo){
+		
+		String sql = "INSERT INTO patient " +
+				" VALUES (?, ?, ?,?,?)";
+		jdbcTemplate.update(sql, new Object[] { 2,
+				patientInfo.getFirstName(),patientInfo.getLastName(), patientInfo.getDob(), patientInfo.getAddress()});
+		
 		System.out.println(patientInfo);
-		jdbcTemplate.execute("INSERT INTO patient VALUES(2,'sas','sasa','2017-02-02','ewee');");
+		
 		return patientInfo;
 	}
 	
