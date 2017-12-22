@@ -4,6 +4,8 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
 	        $scope: $scope
 	    });
 		
+		$scope.submitted = false;
+		
 		/*$scope.today = function() {
 			$scope.patient.dob = new Date();
 		  };
@@ -109,7 +111,10 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
         };
 
   */      
-        $scope.addPatient = function(patient){
+        $scope.addPatient = function(patient, form){
+        	$scope.submitted = true;
+        	if (form.$valid) {
+               
 	        	$http({
 	                method: "POST",
 	                url: "/rest/patient/add",
@@ -119,6 +124,7 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
 	            }, function myError(response) {
 	               
 	            });
+        	}
         	
         }
 

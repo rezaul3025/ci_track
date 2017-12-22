@@ -1,9 +1,17 @@
 <div th:fragment="validationErrorMessage">
-<script type="text/ng-template" id="textFieldErrorMessage">
+<script type="text/ng-template" id="firstNameErrorMessage">
   		<div ng-message="mandatory" class="notice marker-on-top bg-darkRed fg-white" style='padding: 5px;margin-top:6px'>
-			Enter user name.
+			Please, enter first name.
   		</div>
 </script>
-
-
+<script type="text/ng-template" id="lastNameErrorMessage">
+  		<div ng-message="mandatory" class="notice marker-on-top bg-darkRed fg-white" style='padding: 5px;margin-top:6px'>
+			Please, enter last name.
+  		</div>
+</script>
+<script type="text/ng-template" id="addressErrorMessage">
+  		<div ng-message="mandatory" class="notice marker-on-top bg-darkRed fg-white" style='padding: 5px;margin-top:6px'>
+			Please, enter address.
+  		</div>
+</script>
 </div>

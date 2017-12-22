@@ -20,19 +20,7 @@ var UtilsService = (function(){
         };
         
         this.mandatoryCheck = function(value){
-        	/*if (typeof value == 'undefined') {
-                return false;
-            }
-        	else */
-        	if(typeof value != 'undefined' && value == null){
-        		return false;
-        	}
-        	else if(typeof value != 'undefined' && value.length <= 0){
-        		return false;
-        	}
-            else {
-                return true;
-            }
+        	 return value != "" && value != undefined && value != null;
         }
 		
 	}
