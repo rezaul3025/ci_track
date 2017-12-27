@@ -6,6 +6,7 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
 		
 		$scope.submitted = false;
 		
+		$scope.prescriptionItem = [{"description":"","dose":""}]
 		
         $scope.addPrescription = function(prescription, form){
         	$scope.submitted = true;
