@@ -95,7 +95,8 @@
 					data-toggle="offcanvas">Toggle nav</button>
 			</p>
 			<div class="jumbotron">
-				<a th:href="@{/patient/add}"> ADD PATIENT</a>
+				<a th:href="@{/patient/add}"> ADD PATIENT</a><br/>
+				<a th:href="@{/prescription/add}"> ADD PRE</a>
 				<ng-form name="textFieldForm">
 					<div
 			th:replace="/message/validation.error.message :: validationErrorMessage" />
