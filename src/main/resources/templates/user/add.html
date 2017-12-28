@@ -1,0 +1,70 @@
+<html lang="en" layout:decorator="/layout" ng-app="ciTrackApp">
+<head>
+</head>
+<body ng-controller="UserController">
+	<div layout:fragment="sidebar">
+		<h2>Side bar</h2>
+	</div>
+	<div layout:fragment="content">
+		<h3>Add User</h3>
+		 
+		
+		<form class="form-horizontal" name="textFieldForm" ng-submit="submit(textFieldForm);addPrescription(prescription, textFieldForm)">
+		  <div th:replace="/message/validation.error.message :: validationErrorMessage" />
+		    <div class="form-group">
+		    <label for="address" class="col-sm-2 control-label">Title</label>
+		    <div class="col-sm-10">
+		      <select ng-model="user.title" name="title" ng-options="t for t in titles"></select>
+		    </div>
+		  </div>
+		   <div class="form-group">
+		    <label for="address" class="col-sm-2 control-label">First Name</label>
+		    <div class="col-sm-10">
+		      <ci-text-field placeholder="Enter first name"  ng-model="user.firstName" name="firstName"
+		       errormessage="firstNameErrorMessage" />
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="firstName" class="col-sm-2 control-label">Last Name</label>
+		    <div class="col-sm-10">
+		      <ci-text-field placeholder="Enter last name"  ng-model="user.lastName" 
+		      name="lastName" errormessage="lastNameErrorMessage" />
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="firstName" class="col-sm-2 control-label">Designation</label>
+		    <div class="col-sm-10">
+		      <select ng-model="user.designation" name="title" ng-options="d for d in designations"></select>
+		    </div>
+		  </div>
+		  <div class="form-group" ng-if="user.designation=='Doctor'">
+		    <label for="firstName" class="col-sm-2 control-label">Doctor's qualifications</label>
+		    <div class="col-sm-10">
+		      <ci-text-area placeholder="Enter doctors qualifications(e.g. BSC health, MBBS, FCPS , etc)"  ng-model="user.drqualifications" 
+		      name="drQualifications" errormessage="drQualificationsErrorMessage" cols="30" rows="4"/>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="firstName" class="col-sm-2 control-label">Choose user name</label>
+		    <div class="col-sm-10">
+		      <input type="text" ng-model="user.username" name="userName" />
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="firstName" class="col-sm-2 control-label">Choose password</label>
+		    <div class="col-sm-10">
+		      <input type="password" ng-model="user.password" name="password" />
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-default" >ADD</button>
+		    </div>
+		    
+		  </div> 
+			 
+		</form>
+		<script th:src="@{/custom/js/userController.js}"></script>
+	</div>
+</body>
+</html>
