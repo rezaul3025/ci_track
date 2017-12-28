@@ -32,44 +32,63 @@
 		    </div>
 		    
 		  </div> -->
-		  <table class="table">
-			    <tr>
-			    	<th>Description</th>
-			    	<th>Dose</th>
-			    	<th></th>
-			    </tr>
-			    <tr ng-repeat="pres in prescriptionItem">
-			    	<td>
-			    		<ci-text-field placeholder="Medication description"  ng-model="pres.description" name="description" />
-			    	</td>
-			    	<td>
-			    		<label class="radio-inline">
-						  <input type="radio" name="doseOptions{{$index}}" id="doseOptions111" ng-model="pres.dose" value="1+1+1" /> 1+1+1
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="doseOptions{{$index}}" id="doseOptions101"  ng-model="pres.dose" value="1+0+1" /> 1+0+1
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="doseOptions{{$index}}" id="doseOptions100" ng-model="pres.dose" value="1+0+0" /> 1+0+0
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="doseOptions{{$index}}" id="doseOptions010" ng-model="pres.dose" value="0+1+0" /> 0+1+0
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="doseOptions{{$index}}" id="doseOptions001" ng-model="pres.dose" value="0+0+1" /> 0+0+1
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="doseOptions{{$index}}" id="doseOptionsOthers" ng-model="pres.dose" value="others" /> others
-						</label>
-						<label class="radio-inline" ng-if="pres.dose=='others'">
-							<input type="text" name="doseOthers{{$index}}" id="doseOthers" ng-model="pres.others"  />
-						</label>
-			    	</td>
-			    	<td>
-			    		<button ng-if="$index+1 == prescriptionItem.length" ng-click="addMoreMedication()" type="submit" class="btn btn-default" >More >></button>
-			    	</td>
-			    </tr>
-		    </table>
+			  <table class="table">
+				    <tr>
+				    	<th>Description</th>
+				    	<th>Dose</th>
+				    	<th></th>
+				    </tr>
+				    <tr ng-repeat="presItem in prescriptionItem">
+				    	<td>
+				    		<ci-text-field placeholder="Medication description"  ng-model="presItem.description" name="description" />
+				    	</td>
+				    	<td>
+				    		<label class="radio-inline">
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions111" ng-model="presItem.dose" value="1+1+1" /> 1+1+1
+							</label>
+							<label class="radio-inline">
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions101"  ng-model="presItem.dose" value="1+0+1" /> 1+0+1
+							</label>
+							<label class="radio-inline">
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions100" ng-model="presItem.dose" value="1+0+0" /> 1+0+0
+							</label>
+							<label class="radio-inline">
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions010" ng-model="presItem.dose" value="0+1+0" /> 0+1+0
+							</label>
+							<label class="radio-inline">
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions001" ng-model="presItem.dose" value="0+0+1" /> 0+0+1
+							</label>
+							<label class="radio-inline">
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptionsOthers" ng-model="presItem.dose" value="others" /> others
+							</label>
+							<label class="radio-inline" ng-if="presItem.dose=='others'">
+								<input type="text" name="doseOthers{{$index}}" id="doseOthers" ng-model="presItem.others"  />
+							</label>
+				    	</td>
+				    	<td>
+				    		<button ng-if="$index+1 == prescriptionItem.length" ng-click="addMoreMedication()" type="submit" class="btn btn-default" >More >></button>
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<td>
+				    		Any comments
+				    	</td>
+				    	<td>
+				    		 <ci-text-area placeholder="Any comments"  ng-model="prescription.comments" name="comments" rows="3" cols="20" errormessage="commentsErrorMessage" />
+				    	</td>
+				    	<td>
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<td>
+				    		 <button type="submit" class="btn btn-default" >ADD</button>
+				    	</td>
+				    	<td>
+				    	</td>
+				    	<td>
+				    	</td>
+				    </tr>
+			    </table>
 		</form>
 		<script th:src="@{/custom/js/prescriptionController.js}"></script>
 	</div>

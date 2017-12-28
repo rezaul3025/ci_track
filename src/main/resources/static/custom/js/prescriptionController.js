@@ -8,22 +8,31 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
 		
 		$scope.prescriptionItem = [{"description":"","dose":""}];
 		
-        /*$scope.addPrescription = function(prescription, form){
+        $scope.addPrescription = function(prescription, form){
         	$scope.submitted = true;
-        	if (form.$valid) {
+        	
+        	var data = {
+        			"prescription":$scope.prescriptionItem,
+        			"date":new Date(),
+        			"doctorId":232323,
+        			"patientId":121212,
+        			"comments":prescription.comments
+        	}
+        	
+        	//if (form.$valid) {
                
 	        	$http({
 	                method: "POST",
 	                url: "/rest/prescription/add",
-	                data: patient,
+	                data: data,
 	            }).then(function mySucces(response) {
 	            	
 	            }, function myError(response) {
 	               
 	            });
-        	}
+        	//}
         	
-        }*/
+        }
 		
 		$scope.addMoreMedication = function(){
 			$scope.prescriptionItem.push({"description":"","dose":""});

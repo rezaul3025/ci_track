@@ -11,14 +11,20 @@ public class PrescriptionInfo {
 	
 	private Integer doctorId;
 	
+	private String comments;
+	
+	private Integer patientId;
+	
 	public PrescriptionInfo(){
 		
 	}
 	
-	public PrescriptionInfo(List<Prescription> prescription, Date date, Integer doctorId){
+	public PrescriptionInfo(List<Prescription> prescription, Date date, Integer doctorId, Integer patientId, String comments){
 		this.prescription = prescription;
 		this.date = date;
 		this.doctorId = doctorId;
+		this.patientId = patientId;
+		this.comments = comments;
 	}
 
 	public List<Prescription> getPrescription() {
@@ -50,4 +56,21 @@ public class PrescriptionInfo {
 		return this.prescription+" "+this.date+" "+this.doctorId;
 	}
 
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public Integer getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
+	
+	
 }
