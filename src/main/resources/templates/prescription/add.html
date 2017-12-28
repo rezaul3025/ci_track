@@ -7,7 +7,7 @@
 	</div>
 	<div layout:fragment="content">
 		<h3>Add Prescription</h3>
-		<hr/>
+		
 		<!--  -->
 		<form class="form-horizontal" name="textFieldForm" ng-submit="submit(textFieldForm);addPrescription(prescription, textFieldForm)">
 		  <div th:replace="/message/validation.error.message :: validationErrorMessage" />
@@ -32,7 +32,7 @@
 		    </div>
 		    
 		  </div> -->
-		  <table>
+		  <table class="table">
 			    <tr>
 			    	<th>Description</th>
 			    	<th>Dose</th>
@@ -42,7 +42,21 @@
 			    		<ci-text-field placeholder="Enter address"  ng-model="patient.address" name="address"/>
 			    	</td>
 			    	<td>
-			    		<ci-text-field placeholder="Enter address"  ng-model="patient.address" name="address"/>
+			    		<label class="radio-inline">
+						  <input type="radio" name="doseOptions" id="doseOptions111" ng-model="dose" value="1+1+1" /> 1+1+1
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="doseOptions" id="doseOptions101"  ng-model="dose" value="1+0+1" /> 1+0+1
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="doseOptions" id="doseOptions100" ng-model="dose" value="1+0+0" /> 1+0+0
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="doseOptions" id="doseOptions010" ng-model="dose" value="0+1+0" /> 0+1+0
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="doseOptions" id="doseOptions001" ng-model="dose" value="0+0+1" /> 0+0+1
+						</label>
 			    	</td>
 			    </tr>
 		    </table>
