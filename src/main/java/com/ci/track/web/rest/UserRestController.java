@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ci.track.web.event.PrescriptionInfo;
+import com.ci.track.web.event.UserInfo;
 
 public class UserRestController {
 	
@@ -13,8 +13,8 @@ public class UserRestController {
 	@RequestMapping(value="/rest/user")
 	public class PrescriptionRestController {
 		@RequestMapping(value="/add", method=RequestMethod.POST)
-		public PrescriptionInfo add(@RequestBody PrescriptionInfo prescriptionInfoatientInfo){
-			return prescriptionInfoatientInfo;
+		public UserInfo add(@RequestBody UserInfo userInfo){
+			return userInfo;
 		}
 	}
 
