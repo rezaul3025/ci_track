@@ -6,8 +6,9 @@ module.directive('ciTextField', [function () {
             template: function (element, attrs) {
                 var form = ci.getProperty(attrs, "ciForm", "textFieldForm");
                 var field = ci.getProperty(attrs, "ciField", attrs.name);
+                var type = ci.getProperty(attrs, "type", attrs.type);
                 var errors = ci.getProperty(attrs, "ciErrorMessages", attrs.errormessage);
-                return ciDirective.inputFieldTemplate(form, field, errors, "ci-text=''", attrs.placeholder, element);
+                return ciDirective.inputFieldTemplate(form, type, field, errors, "ci-text=''", attrs.placeholder, element);
             }
         };
     }]);

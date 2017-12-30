@@ -8,7 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CiTrackController {
 	
 	@RequestMapping(value="/")
-	public String moveLandingPage(Model model){
+	public String moveLoginPage(Model model){
+		return "login";
+	}
+	
+	@RequestMapping(value="/home")
+	public String moveHomePage(Model model){
 		return "index";
 	}
 	

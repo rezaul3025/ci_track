@@ -1,6 +1,6 @@
 package com.ci.track.web.event;
 
-public class User {
+public class UserInfo {
 	
 	private Integer id;
 	
@@ -11,6 +11,8 @@ public class User {
 	private String lastName;
 	
 	private String designation;
+	
+	private String drqualifications;
 	
 	private String userName;
 	
@@ -71,4 +73,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getDrqualifications() {
+		return drqualifications;
+	}
+
+	public void setDrqualifications(String drqualifications) {
+		this.drqualifications = drqualifications;
+	}
+	
 }

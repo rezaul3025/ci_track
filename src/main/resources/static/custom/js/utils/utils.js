@@ -32,14 +32,14 @@ ciDirective ={
 	        });
 	        return attributeString + 'placeholder="' + placeholder + '" ';
 	    },
-		inputFieldTemplate: function (form, field, errorMessages, directive, placeholder, element) {
+		inputFieldTemplate: function (form, type, field, errorMessages, directive, placeholder, element) {
 	        var attributeString = ciDirective.convertAttributesToString(element, placeholder);
 	        // jump to parent scope for messages
 	        var messageField = field.replace(/\.\$/g, '\.\$parent\.\$');
 	        var offsetLeft = angular.element(element).prop('offsetLeft');
             var offsetTop = angular.element(element).prop('offsetTop')+48;
 	        return '<div>' + '<div ng-class="fieldClass(' + form + '.' + field + ')">'
-	            + '<input class="form-control" id="' + field + '" name="' + field + '"' + directive + ' ' + attributeString + '/>' + '</div>'
+	            + '<input class="form-control" type="'+type+'" id="' + field + '" name="' + field + '"' + directive + ' ' + attributeString + '/>' + '</div>'
 	            + '<div class="metro" ng-messages="' + form + '.' + messageField + '.$error" multiple=""' + 'ng-show="fieldInteracted(' + form + '.' + messageField + ')"'+ '>' + '<div ng-messages-include="' + errorMessages + '" ' + 'ci-scope-init="field=' + form + '.' + messageField + '"></div></div></div>' + '</div>';
 	    },
 	    inputAreaFieldTemplate: function (form, field, rows, cols, errorMessages, directive, placeholder, element) {
