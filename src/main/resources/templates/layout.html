@@ -8,6 +8,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
    
     <title>Dashboard Template for Bootstrap</title>
 
@@ -35,7 +37,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
 	<script th:src="@{/lib/angularjs/angular.min.js}"></script>
 	<script th:src="@{/lib/angularjs/angular-messages.min.js}"></script>
 	<script th:src="@{/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
@@ -188,17 +190,37 @@
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search..."/>
-          </form>
+          <ul class="nav navbar-nav pull-right">
+			<li class="dropdown" sec:authorize="isAuthenticated()">
+				<a href="#" class="dropdown-toggle" 
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false">
+					<span class="caret"></span> 
+					<span th:text ="${#authentication.getPrincipal().getUser().getFirstName()}"></span> <span th:text ="${#authentication.getPrincipal().getUser().getLastName()}"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="#">Edit profile</a></li>
+				</ul>
+			</li>
+			<li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/user/add}">Add user</a></li>
+		</ul>
+        <form class="navbar-form navbar-right">
+        	<input type="text" class="form-control" placeholder="Search..."/>
+        </form>
+        <form class="navbar-form navbar-right" role="search" sec:authorize="isAuthenticated()"
+					th:action="@{/logout}" method="post">
+			<button type="submit" class="btn btn-primary">Logout</button>
+		</form>
         </div>
       </div>
     </nav>
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar" id="sidebar"
+        <div class="col-sm-3 col-md-2 sidebar" >
+			<div id="sidebar"
 				layout:fragment="sidebar">
+			</div>	
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
             <li><a href="#">Reports</a></li>

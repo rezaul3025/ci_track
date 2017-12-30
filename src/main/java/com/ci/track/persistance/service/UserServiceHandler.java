@@ -30,6 +30,7 @@ public class UserServiceHandler implements UserService {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
+        user.setRole(user.getDesignation()!=null && user.getDesignation().equals("Doctor")?"DOCTOR":"OTHERS");
 		userRepository.saveAndFlush(user);
 		return user;
 	}
