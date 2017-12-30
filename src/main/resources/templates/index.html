@@ -94,9 +94,8 @@
 				<button type="button" class="btn btn-primary btn-xs"
 					data-toggle="offcanvas">Toggle nav</button>
 			</p>
-			<div class="jumbotron">
-				<a th:href="@{/patient/add}"> ADD PATIENT</a><br/>
-				<a th:href="@{/prescription/add}"> ADD PRE</a>
+			
+				<!-- <a th:href="@{/prescription/add}"> ADD PRE</a>
 				<a th:href="@{/user/add}"> ADD USER</a>
 				<ng-form name="textFieldForm">
 					<div
@@ -104,28 +103,10 @@
 			
 					<ci-text-field placeholder="enter name"  ng-model="name" name="name"/>
 				</ng-form>
-				<div class="form-group">
-					<input type="text" class="form-control input-lg"
-						ng-model="search.main"
-						uib-typeahead="key for key in getSearchKey($viewValue) | limitTo:10"
-						placeholder="Search doctor by Name, Speclization, City jjkjk"
-						id="inputSuccess2"
-						typeahead-on-select="doSimpleSearch($item, $model, $label, $event, 0)" />
-					<span class="glyphicon glyphicon-search form-control-feedback"></span>
-				</div>
-			</div>
+			 -->
 			<div class="se-pre-con"></div>
-			<blockquote>
-				<p class="text-uppercase">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Integer posuere erat a ante.</p>
-				<footer>
-					Someone famous in <cite title="Source Title">Source Title</cite>
-				</footer>
-			</blockquote>
-			<h4>
-				This list contains <span class="badge">{{simpleSearchResults.length}}</span>
-				result(s)
-			</h4>
+			
+			
 			<!-- <span sec:authorize="isAuthenticated()"> 
 				<span th:text="${#authentication.getPrincipal().getUser().getFirstName()}"></span>
 				<span th:text="${#authentication.getPrincipal().getUser().getLastName()}"></span>
@@ -137,6 +118,32 @@
 			<h1 th:text="${#authentication.name}">Hello
 				[[${#httpServletRequest.remoteUser}]]!</h1> -->
 
+
+		  <h2 class="page-header">Add patient, Test, Prescription</h2>
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <a th:href="@{/patient/add}"> 
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"/>
+              <h3>ADD PATIENT</h3>
+              </a>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+            	<a th:href="@{/prescription/add}">
+              	<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"/>
+              	<h3>ADD PRESCRIPTION</h3>
+              </a>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"/>
+              <h3>Label</h3>
+             
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail"/>
+              <h3>Label</h3>
+            </div>
+          </div>
 			<script th:src="@{/custom/js/ciTrackController.js}"></script>
 		</div>
 	</div>
