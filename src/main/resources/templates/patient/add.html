@@ -1,9 +1,14 @@
 <html lang="en" layout:decorator="/layout" ng-app="ciTrackApp">
 <head>
 </head>
-<body ng-controller="PatientController">
+<body ng-controller="PatientController" ng-init="loadAllPatient()">
 	<div layout:fragment="sidebar">
-		<h2>Side bar</h2>
+		<h2>Patient(s)</h2>
+		<hr/>
+		
+		<p ng-repeat="patient in patients">
+			<a href="/patient/view/{{patient.id}}"> <strong>{{patient.firstName}} {{patient.lastName}}, {{patient.dob}}</strong></a>
+		</p>
 	</div>
 	<div layout:fragment="content">
 		<h3>Add patient</h3>

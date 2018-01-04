@@ -10,16 +10,21 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ci.track.persistance.domain.Patient;
+import com.ci.track.persistance.domain.User;
+import com.ci.track.persistance.service.PatientService;
 import com.ci.track.web.event.LabResult;
 import com.ci.track.web.event.LabTest;
 import com.ci.track.web.event.PatientInfo;
@@ -32,6 +37,9 @@ public class PatientRestController {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private PatientService patientServie;
 	
 	@RequestMapping("/info")
 	public PatientInfo getPatientInfo(){
@@ -51,12 +59,20 @@ public class PatientRestController {
 		System.out.println(p.getMonths());
 		System.out.println(p.getYears());
 		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
+		Patient patient = new Patient();
+		BeanUtils.copyProperties(patientInfo, patient);
+		
+		patient.setAge(p.getYears());
+		
+		patientServie.add(patient);
+		
 		/*String sql = "INSERT INTO patient(firstName, lastName, dob, address) " +
 				" VALUES (?,?,?,?)";
 		jdbcTemplate.update(sql, new Object[] {
 				patientInfo.getFirstName(),patientInfo.getLastName(), patientInfo.getDob(), patientInfo.getAddress()}, keyHolder);
 		*/
-		
+		/*
 		final PreparedStatementCreator psc = new PreparedStatementCreator() {
 		      @Override
 		      public PreparedStatement createPreparedStatement(final Connection connection) throws SQLException {
@@ -73,7 +89,7 @@ public class PatientRestController {
 		
 		jdbcTemplate.update(psc, keyHolder);
 		    
-		System.out.println(patientInfo);
+		System.out.println(patientInfo);*/
 		
 		return patientInfo;
 	}
@@ -99,5 +115,15 @@ public class PatientRestController {
 		System.out.println(labTest);
 		
 		return labTest;
+	}
+	
+	@RequestMapping(value="/get-all", method=RequestMethod.GET)
+	public List<Patient> getAll(){
+		return patientServie.getAll();
+	}
+	
+	@RequestMapping(value="/findbyid/{id}", method=RequestMethod.GET)
+	public Patient findByID(@PathVariable("id") Integer id){
+		return patientServie.findById(id);
 	}
 }

@@ -4,6 +4,11 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
 	        $scope: $scope
 	    });
 		
+		var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $http.defaults.headers.common[header] = token;
+        console.log(token);
+		
 		$scope.submitted = false;
 		
 		/*$scope.today = function() {
@@ -126,7 +131,36 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
 	            });
         	}
         	
+        };
+        
+        $scope.loadAllPatient = function(){
+        	$http({
+                method: "GET",
+                url: "/rest/patient/get-all",
+                params: {}
+            }).then(function succes(response) {
+                $scope.patients = response.data;
+                
+            }, function error(response) {
+            });
+        };
+        
+        $scope.init = function(id){
+        	$scope.patientById(id);
         }
+        
+        $scope.patientById = function(id){
+        	$http({
+                method: "GET",
+                url: "/rest/patient/findbyid/"+id,
+                params: {}
+            }).then(function succes(response) {
+                $scope.patient = response.data;
+                
+            }, function error(response) {
+            });
+        };
+
 
     }])
     

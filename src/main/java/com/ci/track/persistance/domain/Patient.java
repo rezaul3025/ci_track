@@ -1,24 +1,42 @@
-package com.ci.track.web.event;
+package com.ci.track.persistance.domain;
 
 import java.util.Date;
 
-public class PatientInfo {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity(name="patient")
+public class Patient {
 	
+	@Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
+	@Column(name="first_name")
 	private String firstName;
 	
+	@Column(name="last_name")
 	private String lastName;
 	
+	@Column(name="date")
+    @JsonFormat(pattern="yyyy-MM-dd" ,locale="de", timezone="GMT+1")
 	private Date dob;
+	
+	private Integer age;
 	
 	private String address;
 	
-	public PatientInfo(){
+	public Patient(){
 		
 	}
 	
-	public PatientInfo(String firstName, String lastName, Date dob, String address){
+	public Patient(String firstName, String lastName, Date dob, String address){
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dob = dob;
@@ -63,6 +81,14 @@ public class PatientInfo {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 
 	@Override

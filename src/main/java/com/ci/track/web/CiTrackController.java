@@ -2,6 +2,7 @@ package com.ci.track.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -20,6 +21,12 @@ public class CiTrackController {
 	@RequestMapping(value="/patient/add")
 	public String moveAddPatientPage(Model model){
 		return "/patient/add";
+	}
+	
+	@RequestMapping(value="/patient/view/{id}")
+	public String moveViewPatientPage(@PathVariable("id") Integer id, Model model){
+		model.addAttribute("id", id);
+		return "/patient/view";
 	}
 	
 	@RequestMapping(value="/prescription/add")
