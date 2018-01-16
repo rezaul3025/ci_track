@@ -5,9 +5,19 @@
 	<div layout:fragment="sidebar">
 		<h2>Side bar {{patientId}}</h2>
 	</div>
-	<div layout:fragment="content">
-		<h3>Add Prescription</h3>
-		 
+	<div layout:fragment="content" >
+		<div class="media">
+		  <div class="media-left">
+		    <a href="#">
+		      <img class="media-object" th:src="@{/images/prescription2.jpeg}" width="20" height="20" alt="Prescription icon"/>
+		    </a>
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">Add Prescription</h4>
+		    
+		  </div>
+		</div>
+		
 		<!--  -->
 		<form class="form-horizontal" name="textFieldForm" ng-submit="submit(textFieldForm);addPrescription(prescription, textFieldForm)">
 		  <div th:replace="/message/validation.error.message :: validationErrorMessage" />
