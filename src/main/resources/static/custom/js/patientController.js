@@ -158,7 +158,7 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                 		            "targets": 6,
                 		            "data": null,
                 		            "orderable": false,
-                		            "defaultContent": "<a id='addprescription' href='#'>Add prescription</a>"
+                		            "defaultContent": "<a id='addprescription' href='#'>Add prescription</a><br/><a id='addprescription' href='#'>Add test</a>"
                 		        } ]
                 		    }
                 	);

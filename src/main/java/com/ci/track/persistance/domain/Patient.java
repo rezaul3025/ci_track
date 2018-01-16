@@ -28,7 +28,7 @@ public class Patient {
     @JsonFormat(pattern="yyyy-MM-dd" ,locale="de", timezone="GMT+1")
 	private Date dob;
 	
-	private Integer age;
+	private String age;
 	
 	private String address;
 	
@@ -83,11 +83,11 @@ public class Patient {
 		this.address = address;
 	}
 
-	public Integer getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 

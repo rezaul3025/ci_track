@@ -8,3 +8,13 @@ CREATE TABLE `citrack`.`user_info` (
   `password` VARCHAR(1024) NULL,
   `role` VARCHAR(255) NULL,
   PRIMARY KEY (`id`));
+  
+  CREATE TABLE `patient` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `age` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ;

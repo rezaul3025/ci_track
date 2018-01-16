@@ -52,18 +52,31 @@ public class PatientRestController {
 		LocalDate today = LocalDate.now();
 		LocalDate birthday = patientInfo.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		 
-		Period p = Period.between(birthday, today);
-		 
-		//Now access the values as below
-		System.out.println(p.getDays());
-		System.out.println(p.getMonths());
-		System.out.println(p.getYears());
-		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
 		Patient patient = new Patient();
 		BeanUtils.copyProperties(patientInfo, patient);
 		
-		patient.setAge(p.getYears());
+		Period p = Period.between(birthday, today);
+		 
+		//Now access the values as below
+		/*System.out.println(p.getDays());
+		System.out.println(p.getMonths());
+		System.out.println(p.getYears());*/
+		
+		int d = p.getDays();
+		int m = p.getMonths();
+		int y = p.getYears();
+		
+		if(y != 0){
+			patient.setAge(y+" Year(s)");
+		}
+		else if(y==0 && m != 0){
+			patient.setAge(m+" Month(s)");
+		}
+		else
+		{
+			patient.setAge(d+" Day(s)");
+		}
 		
 		patientServie.add(patient);
 		
