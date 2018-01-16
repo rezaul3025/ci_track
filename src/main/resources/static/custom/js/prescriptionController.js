@@ -4,6 +4,10 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
 	        $scope: $scope
 	    });
 		
+		$scope.init = function(id){
+        	$scope.patientId = id;
+        }
+		
 		$scope.submitted = false;
 		
 		$scope.prescriptionItem = [{"description":"","dose":""}];

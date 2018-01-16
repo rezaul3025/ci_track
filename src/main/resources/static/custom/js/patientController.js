@@ -140,6 +140,35 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                 params: {}
             }).then(function succes(response) {
                 $scope.patients = response.data;
+               
+                $(document).ready(function() {
+                	var patientListTable = $('#patients').DataTable(
+                			{
+                		        data: response.data,
+                		        columns: [
+                		            { title: "ID", "data":"id" },
+                		            { title: "First Name", "data":"firstName" },
+                		            { title: "Last Name", "data":"lastName" },
+                		            { title: "Date of birth","data":"dob" },
+                		            { title: "Age","data":"age" },
+                		            { title: "Address","data":"address" },
+                		            { title: "Action"}
+                		        ],
+                		        "columnDefs": [ {
+                		            "targets": 6,
+                		            "data": null,
+                		            "orderable": false,
+                		            "defaultContent": "<a id='addprescription' href='#'>Add prescription</a>"
+                		        } ]
+                		    }
+                	);
+                	
+                	$('#patients tbody').on( 'click', '#addprescription', function () {
+                        var data = patientListTable.row( $(this).parents('tr') ).data();
+                        //alert( 'patient id is : '+data.id );
+                        location.href = '/prescription/add/'+data.id;
+                    } );
+                } );
                 
             }, function error(response) {
             });
@@ -161,6 +190,7 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
             });
         };
 
-
-    }])
+    }]);
+    
+    
     
