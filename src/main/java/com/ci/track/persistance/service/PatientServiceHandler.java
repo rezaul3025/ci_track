@@ -1,8 +1,6 @@
 package com.ci.track.persistance.service;
 
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +17,14 @@ public class PatientServiceHandler implements PatientService {
 	@Override
 	public Patient add(Patient patient) {
 		
-		List<Patient> patients = patientRepo.findAll().stream().filter(p->p.getDob().equals(patient.getDob())
+		/*List<Patient> patients = patientRepo.findAll().stream().filter(p->p.getDob().equals(patient.getDob())
 				&& p.getFirstName().equals(patient.getFirstName()) 
-						&& p.getLastName().equals(patient.getLastName())).collect(Collectors.toList());
-		
-		if(patients != null && patients.isEmpty()){
+						&& p.getLastName().equals(patient.getLastName())).collect(Collectors.toList());*/
+		boolean validPatient = patient.getFirstName() != null && !patient.getFirstName().isEmpty()
+							&& patient.getLastName() !=null && !patient.getLastName().isEmpty()
+							&& patient.getAge() != null 
+							&& patient.getAddress() != null && !patient.getAddress().isEmpty();
+		if(validPatient){
 			patientRepo.saveAndFlush(patient);
 		}
 		
