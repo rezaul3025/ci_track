@@ -32,6 +32,12 @@ public class Patient {
 	
 	private String address;
 	
+	private String gender;
+	
+	private Float height;
+	
+	private Float weight;
+	
 	public Patient(){
 		
 	}
@@ -89,6 +95,30 @@ public class Patient {
 
 	public void setAge(String age) {
 		this.age = age;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Float getHeight() {
+		return height;
+	}
+
+	public void setHeight(Float height) {
+		this.height = height;
+	}
+
+	public Float getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Float weight) {
+		this.weight = weight;
 	}
 
 	@Override
