@@ -19,8 +19,10 @@ module.directive('ciText', ['ciUtilsService', '$parse', function (ciUtilsService
             require: 'ngModel',
             link: function (scope, element, attrs, ngModel) {
             	//ngModel.$validators.mandatory = true;
-            	ngModel.$validators.mandatory = function(value){
-            		return ciUtilsService.mandatoryCheck(value);
+            	if(attrs.mandatory=="true"){
+	            	ngModel.$validators.mandatory = function(value){
+	            		return ciUtilsService.mandatoryCheck(value) ;
+	            	}
             	}
                 
                 /*ngModel.$validators.validFileCheck = function (value) {
@@ -139,9 +141,17 @@ module.directive('ciSelect', ['ciUtilsService', '$parse', function (ciUtilsServi
         require: 'ngModel',
         link: function (scope, element, attrs, ngModel) {
         	//ngModel.$validators.mandatory = true;
-        	element[0].options = scope.patientGender;
+        	//scope.patient = scope.patientGender1;
+        	/*$.each(scope.patientGender, function(key, value) {   
+        	     $(element)
+        	         .append($("<option></option>")
+        	                    .attr("value","string:"+value.text)
+        	                    .attr("label",value.text)
+        	                    .text(value.text)); 
+        	});*/
+        	/*element[0].options = scope.patientGender;
         	var selectParams = ciUtilsService.getRemoteConfig("Select gender", true, scope.patientGender1, "");
-        	ciUtilsService.generateSelect2Box(element, selectParams, scope, ngModel);
+        	ciUtilsService.generateSelect2Box(element, selectParams, scope, ngModel);*/
         	ngModel.$validators.mandatory = function(value){
         		return ciUtilsService.mandatoryCheck(value);
         	}

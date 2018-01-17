@@ -69,9 +69,9 @@ ciDirective ={
 	        // jump to parent scope for messages
 	        var messageField = field.replace(/\.\$/g, '\.\$parent\.\$');
 	        return '<div>' + '<div ng-class="fieldClass(' + form + '.' + field + ')">'
-	            + '<select class="form-control select"   id="' + field + '" name="' + field + '"' + directive + ' ' + attributeString + '></select>' + '</div>'
-	            + '<div class="metro" ng-messages="' + form + '.' + messageField + '.$error" multiple=""' + 'ng-messages-include="' + errorMessages + '" ' + 'sh-scope-init="field=' + form + '.' + messageField + '"' + 'ng-show="fieldInteracted(' + form + '.' + messageField + ')"'+ '"></div></div>' + '</div>';
-	    },
+            + '<select ng-options="s for s in patientGender1" class="form-control" type="'+type+'" id="' + field + '" name="' + field + '"' + directive + ' ' + attributeString + '></select>' + '</div>'
+            + '<div class="metro" ng-messages="' + form + '.' + messageField + '.$error" multiple=""' + 'ng-show="fieldInteracted(' + form + '.' + messageField + ')"'+ '>' + '<div ng-messages-include="' + errorMessages + '" ' + 'ci-scope-init="field=' + form + '.' + messageField + '"></div></div></div>' + '</div>';
+		},
 	    selectBox:function(params, elememt, url){
 	        $(elememt).select2({
 	            ajax: {
