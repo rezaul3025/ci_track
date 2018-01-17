@@ -116,6 +116,11 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
         };
 
   */      
+		$scope.patientGender = [{"id":1,text:"Male"},{id:2,text:"Female"},{id:3,text:"Others"}];
+		
+		$scope.patientGender1 = ["Male","Female","Others"];
+		  
+		  
         $scope.addPatient = function(patient, form){
         	$scope.submitted = true;
         	if (form.$valid) {

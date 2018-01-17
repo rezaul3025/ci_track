@@ -43,6 +43,31 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
+		    <label for="weight" class="col-sm-2 control-label">Weight(kg)</label>
+		    <div class="col-sm-10">
+		      <ci-text-field type="number" required="false" placeholder="Enter weight in kg"  ng-model="patient.weight" name="weight" errormessage="weightErrorMessage" />
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="height" class="col-sm-2 control-label">Height(cm)</label>
+		    <div class="col-sm-10">
+		      <ci-text-field type="number" required="false" placeholder="Enter height in cm"  ng-model="patient.height" name="height" errormessage="heightErrorMessage" />
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="gender" class="col-sm-2 control-label">Gender</label>
+		    <div class="col-sm-10">
+		    {{patient}} jjj {{textFieldForm.gender.$error}}
+		     <!--  <ci-select-field   ng-model="patient.gender" name="gender" errormessage="genderErrorMessage"/> -->
+		    	<select ng-model="patient.gender" name="gender" errormessage="genderErrorMessage" ng-options="g for g in patientGender1"></select>
+		    	<div class="metro ng-active ng-hide" ng-messages="textFieldForm.gender.$error" multiple="" ng-show="fieldInteracted(textFieldForm.gender)">
+			    	<div ng-message="mandatory" class="notice marker-on-top bg-darkRed fg-white ng-scope" style="padding: 5px;margin-top:6px">
+						Please, select gender.
+	  				</div>
+  				</div>
+		    </div>
+		  </div>
+		  <div class="form-group">
 		    <label for="address" class="col-sm-2 control-label">Address</label>
 		    <div class="col-sm-10">
 		     <!--  <ci-text-field placeholder="Enter address"  ng-model="patient.address" name="address"/> -->
@@ -56,6 +81,8 @@
 		  </div>
 		</form>
 		
+		<script th:src="@{/lib/select2-4.0.2/dist/js/select2.js}"></script>
+		<!-- <script th:src="@{/lib/select2.0/select2.js}"></script> -->
 		<script th:src="@{/custom/js/patientController.js}"></script>
 	</div>
 </body>

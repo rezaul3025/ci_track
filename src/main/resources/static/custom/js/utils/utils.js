@@ -64,12 +64,12 @@ ciDirective ={
 	       
 	        return html;
 	     },
-		selectFieldTemplate: function (form, field, errorMessages, directive, placeholder, element) {
+		selectFieldTemplate: function (form, type, field, errorMessages, directive, placeholder, element) {
 	        var attributeString = ciDirective.convertAttributesToString(element, placeholder);
 	        // jump to parent scope for messages
 	        var messageField = field.replace(/\.\$/g, '\.\$parent\.\$');
 	        return '<div>' + '<div ng-class="fieldClass(' + form + '.' + field + ')">'
-	            + '<select class="form-control select" id="' + field + '" name="' + field + '"' + directive + ' ' + attributeString + '/></select>' + '</div>'
+	            + '<select class="form-control select"   id="' + field + '" name="' + field + '"' + directive + ' ' + attributeString + '></select>' + '</div>'
 	            + '<div class="metro" ng-messages="' + form + '.' + messageField + '.$error" multiple=""' + 'ng-messages-include="' + errorMessages + '" ' + 'sh-scope-init="field=' + form + '.' + messageField + '"' + 'ng-show="fieldInteracted(' + form + '.' + messageField + ')"'+ '"></div></div>' + '</div>';
 	    },
 	    selectBox:function(params, elememt, url){
