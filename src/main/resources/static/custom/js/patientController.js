@@ -156,11 +156,13 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                 		            { title: "Last Name", "data":"lastName" },
                 		            { title: "Date of birth","data":"dob" },
                 		            { title: "Age","data":"age" },
+                		            { title: "Height(cm)","data":"height" },
+                		            { title: "Weight(kg)","data":"weight" },
                 		            { title: "Address","data":"address" },
                 		            { title: "Action"}
                 		        ],
                 		        "columnDefs": [ {
-                		            "targets": 6,
+                		            "targets": 8,
                 		            "data": null,
                 		            "orderable": false,
                 		            "defaultContent": "<a id='addprescription' href='#'>Add prescription</a><br/><a id='addprescription' href='#'>Add test</a>"
@@ -172,6 +174,29 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                         var data = patientListTable.row( $(this).parents('tr') ).data();
                         //alert( 'patient id is : '+data.id );
                         location.href = '/prescription/add/'+data.id;
+                    } );
+                	
+                	var patientListTableShort = $('#patientsShort').DataTable(
+                			{
+                		        data: response.data,
+                		        columns: [
+                		            { title: "First Name", "data":"firstName" },
+                		            { title: "Last Name", "data":"lastName" },
+                		            { title: "Date of birth","data":"dob" }
+                		        ],
+                		        "columnDefs": [ {
+                		            "targets": 3,
+                		            "data": null,
+                		            "orderable": false,
+                		            "defaultContent": "<a id='viewMore' href='#'>More>></a>"
+                		        } ]
+                		    }
+                	);
+                	
+                	$('#patientsShort tbody').on( 'click', '#viewMore', function () {
+                        var data = patientListTableShort.row( $(this).parents('tr') ).data();
+                        //alert( 'patient id is : '+data.id );
+                        location.href = '/patient/view/'+data.id;
                     } );
                 } );
                 

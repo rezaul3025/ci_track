@@ -5,10 +5,13 @@
 	<div layout:fragment="sidebar">
 		<h2>Patient(s)</h2>
 		<hr/>
-		
-		<p ng-repeat="patient in patients">
+		<table class="table" id="patientsShort">
+			<tr>
+			</tr>
+		</table>
+		<!-- <p ng-repeat="patient in patients">
 			<a href="/patient/view/{{patient.id}}"> <strong>{{patient.firstName}} {{patient.lastName}}, {{patient.dob}}</strong></a>
-		</p>
+		</p> -->
 	</div>
 	<div layout:fragment="content">
 		<h3>Add patient</h3>
