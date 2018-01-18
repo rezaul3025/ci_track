@@ -11,12 +11,18 @@
 					<th>
 						Name, Date of birth
 					</th>
+					<th>
+						View
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 			<tr ng-repeat="patient in patients">
 				<td>
-					<a href="/patient/view/{{patient.id}}"> <strong>{{patient.firstName}} {{patient.lastName}}, {{patient.dob}}</strong></a>
+					{{patient.firstName}} {{patient.lastName}}, {{patient.dob}}
+				</td>
+				<td>
+					<a href="/patient/view/{{patient.id}}"> <strong>View</strong></a>
 				</td>
 			</tr>
 			</tbody>

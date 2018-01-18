@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CiTrackController {
@@ -30,7 +31,8 @@ public class CiTrackController {
 	}
 	
 	@RequestMapping(value="/patient/list")
-	public String moveListPatientPage( Model model){
+	public String moveListPatientPage(@RequestParam("idf") String idf, Model model){
+		model.addAttribute("idf", idf);
 		return "/patient/list";
 	}
 	

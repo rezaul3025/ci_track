@@ -4,6 +4,10 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
 	        $scope: $scope
 	    });
 		
+		var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $http.defaults.headers.common[header] = token;
+		
 		$scope.init = function(id){
         	$scope.patientId = id;
         }

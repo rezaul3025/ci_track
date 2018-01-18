@@ -138,7 +138,10 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
         	
         };
         
-        $scope.loadAllPatient = function(){
+        $scope.loadAllPatient = function(idf){
+        	
+        	$scope.idf = idf;
+        	
         	$http({
                 method: "GET",
                 url: "/rest/patient/get-all",
@@ -177,24 +180,21 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                     } );
                 	
                 	var patientListTableShort = $('#patientsShort').DataTable(
-                			/*{
-                		        data: response.data,
-                		        columns: [
-                		            { title: "First Name", "data":"firstName" },
-                		            { title: "Last Name", "data":"lastName" },
-                		            { title: "Date of birth","data":"dob" }
-                		        ],
-                		        "columnDefs": [ {
-                		            "targets": 3,
-                		            "data": null,
-                		            "orderable": false,
-                		            "defaultContent": "<a id='viewMore' href='#'>More>></a>"
-                		        } ]
-                		    }*/
+                			{
+                		        "pagingType": "simple"
+                		    }
                 	);
                 	
                 	$("#patientsShort_length").parent().remove();
-                	
+                	$("#patientsShort_info").parent().removeClass('col-sm-5');
+                	$("#patientsShort_paginate").parent().removeClass('col-sm-7');
+                	$("#patientsShort_paginate").parent().css('allign','center');
+                	/*var patientDTinfo = $("#patientsShort_info").parent().html();
+                	var patientDTpaginateInfo = $("#patientsShort_paginate").parent().html();
+                	//$("#patientsShort_paginate").parent().parent().remove();
+                	$("#patientsShort_wrapper").append("<div class='row'><div class='col-sm-12'>"+patientDTinfo+"</div></div>");
+                	$("#patientsShort_wrapper").append("<div class='row'><div class='col-sm-12'>"+patientDTpaginateInfo+"</div></div>");
+                	*/
                 	$('#patientsShort tbody').on( 'click', '#viewMore', function () {
                         var data = patientListTableShort.row( $(this).parents('tr') ).data();
                         //alert( 'patient id is : '+data.id );
