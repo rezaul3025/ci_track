@@ -6,8 +6,20 @@
 		<h2>Patient(s)</h2>
 		<hr/>
 		<table class="table" id="patientsShort">
-			<tr>
+			<thead>
+				<tr>
+					<th>
+						Name, Date of birth
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="patient in patients">
+				<td>
+					<a href="/patient/view/{{patient.id}}"> <strong>{{patient.firstName}} {{patient.lastName}}, {{patient.dob}}</strong></a>
+				</td>
 			</tr>
+			</tbody>
 		</table>
 		<!-- <p ng-repeat="patient in patients">
 			<a href="/patient/view/{{patient.id}}"> <strong>{{patient.firstName}} {{patient.lastName}}, {{patient.dob}}</strong></a>

@@ -177,7 +177,7 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                     } );
                 	
                 	var patientListTableShort = $('#patientsShort').DataTable(
-                			{
+                			/*{
                 		        data: response.data,
                 		        columns: [
                 		            { title: "First Name", "data":"firstName" },
@@ -190,8 +190,10 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                 		            "orderable": false,
                 		            "defaultContent": "<a id='viewMore' href='#'>More>></a>"
                 		        } ]
-                		    }
+                		    }*/
                 	);
+                	
+                	$("#patientsShort_length").parent().remove();
                 	
                 	$('#patientsShort tbody').on( 'click', '#viewMore', function () {
                         var data = patientListTableShort.row( $(this).parents('tr') ).data();
