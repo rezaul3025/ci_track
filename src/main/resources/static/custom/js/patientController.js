@@ -188,7 +188,7 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                 	$("#patientsShort_length").parent().remove();
                 	$("#patientsShort_info").parent().removeClass('col-sm-5');
                 	$("#patientsShort_paginate").parent().removeClass('col-sm-7');
-                	$("#patientsShort_paginate").parent().css('allign','center');
+                	$("#patientsShort_paginate").parent().addClass('col-sm-10');
                 	/*var patientDTinfo = $("#patientsShort_info").parent().html();
                 	var patientDTpaginateInfo = $("#patientsShort_paginate").parent().html();
                 	//$("#patientsShort_paginate").parent().parent().remove();

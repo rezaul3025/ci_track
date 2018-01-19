@@ -50,42 +50,47 @@
 				    </tr>
 				    <tr ng-repeat="presItem in prescriptionItem">
 				    	<td>
-				    		<ci-text-field placeholder="Medication description"  ng-model="presItem.description" name="description" />
+				    		<ci-text-field mandatory="true" placeholder="Medication description"  ng-model="presItem.description" name="description" errormessage="medicationDescErrorMessage"/>
 				    	</td>
 				    	<td>
 				    		<label class="radio-inline">
-							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions111" ng-model="presItem.dose" value="1+1+1" /> 1+1+1
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions111" ng-model="presItem.dose" value="1+1+1" required=""/> 1+1+1
 							</label>
 							<label class="radio-inline">
-							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions101"  ng-model="presItem.dose" value="1+0+1" /> 1+0+1
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions101"  ng-model="presItem.dose" value="1+0+1" required=""/> 1+0+1
 							</label>
 							<label class="radio-inline">
-							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions100" ng-model="presItem.dose" value="1+0+0" /> 1+0+0
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions100" ng-model="presItem.dose" value="1+0+0" required=""/> 1+0+0
 							</label>
 							<label class="radio-inline">
-							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions010" ng-model="presItem.dose" value="0+1+0" /> 0+1+0
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions010" ng-model="presItem.dose" value="0+1+0" required=""/> 0+1+0
 							</label>
 							<label class="radio-inline">
-							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions001" ng-model="presItem.dose" value="0+0+1" /> 0+0+1
+							  <input type="radio" name="doseOptions{{$index}}" id="doseOptions001" ng-model="presItem.dose" value="0+0+1" required=""/> 0+0+1
 							</label>
-							<label class="radio-inline">
+							
+							<!-- <label class="radio-inline">
 							  <input type="radio" name="doseOptions{{$index}}" id="doseOptionsOthers" ng-model="presItem.dose" value="others" /> others
+							</label> -->
+							<label class="radio-inline">
+								Others :
+								<input type="text" name="othersDose{{$index}}" id="othersDose" ng-model="presItem.othersDose"  />
 							</label>
-							<label class="radio-inline" ng-if="presItem.dose=='others'">
-								<input type="text" name="doseOthers{{$index}}" id="doseOthers" ng-model="presItem.others"  />
+							<label class="radio-inline">
+								<button type="button" ng-click="resetDoes($index)"> Reset</button>
 							</label>
 				    	</td>
 				    	<td>
-				    		<button ng-if="$index+1 == prescriptionItem.length" ng-click="addMoreMedication()" type="submit" class="btn btn-default" >More >></button>
+				    		<button ng-if="$index+1 == prescriptionItem.length" ng-click="addMoreMedication()"  class="btn btn-default" >More >></button>
 				    	</td>
-				    </tr>
+				    </tr> 
 				    <tr>
 				    	<td>
 				    		Any comments
 				    	</td>
 				    	<td>
-				    		 <ci-text-area placeholder="Any comments"  ng-model="prescription.comments" name="comments" rows="3" cols="20" errormessage="commentsErrorMessage" />
-				    	</td>
+ 				    		 <ci-text-area placeholder="Any comments" type="textarea" ng-model="prescription.comments" name="comments" rows="3" cols="20" mandatory="false" />
+ 				    	</td>
 				    	<td>
 				    	</td>
 				    </tr>
@@ -97,7 +102,7 @@
 				    	</td>
 				    	<td>
 				    	</td>
-				    </tr>
+				    </tr> 
 			    </table>
 		</form>
 		<script th:src="@{/custom/js/prescriptionController.js}"></script>

@@ -6,13 +6,16 @@ public class Prescription {
 	
 	private String dose;
 	
+	private String othersDose;
+	
 	public Prescription(){
 		
 	}
 	
-	public Prescription(String description, String dose){
+	public Prescription(String description, String dose, String othersDose){
 		this.description = description;
 		this.dose = dose;
+		this.othersDose =  othersDose;
 	}
 
 	public String getDescription() {
@@ -31,6 +34,14 @@ public class Prescription {
 		this.dose = dose;
 	}
 	
+	public String getOthersDose() {
+		return othersDose;
+	}
+
+	public void setOthersDose(String othersDose) {
+		this.othersDose = othersDose;
+	}
+
 	@Override
 	public String toString(){
 		return this.description+" "+this.dose;

@@ -7,7 +7,7 @@ module.directive('ciTextField', [function () {
                 var form = ci.getProperty(attrs, "ciForm", "textFieldForm");
                 var field = ci.getProperty(attrs, "ciField", attrs.name);
                 var type = ci.getProperty(attrs, "type", attrs.type);
-                var errors = ci.getProperty(attrs, "ciErrorMessages", attrs.errormessage);
+                var errors = ci.getProperty(attrs, "ciErrorMessages", typeof attrs.errormessage != 'undefined'?attrs.errormessage:'defaultErrorMessage');
                 return ciDirective.inputFieldTemplate(form, type, field, errors, "ci-text=''", attrs.placeholder, element);
             }
         };
@@ -66,7 +66,7 @@ module.directive('ciTextArea', [function () {
         template: function (element, attrs) {
             var form = ci.getProperty(attrs, "ciForm", "textFieldForm");
             var field = ci.getProperty(attrs, "ciField", attrs.name);
-            var errors = ci.getProperty(attrs, "ciErrorMessages", attrs.errormessage);
+            var errors = ci.getProperty(attrs, "ciErrorMessages", typeof attrs.errormessage != 'undefined'?attrs.errormessage:'defaultErrorMessage');
             var cols = ci.getProperty(attrs, "cols", 50);
             var rows = ci.getProperty(attrs, "rows", 10);
             return ciDirective.inputAreaFieldTemplate(form, field,rows, cols, errors, "ci-area=''", attrs.placeholder, element);
@@ -80,8 +80,10 @@ module.directive('ciArea', ['ciUtilsService', '$parse', function (ciUtilsService
         require: 'ngModel',
         link: function (scope, element, attrs, ngModel) {
         	//ngModel.$validators.mandatory = true;
-        	ngModel.$validators.mandatory = function(value){
-        		return ciUtilsService.mandatoryCheck(value);
+        	if(attrs.mandatory=="true"){
+	        	ngModel.$validators.mandatory = function(value){
+	        		return ciUtilsService.mandatoryCheck(value);
+	        	}
         	}
         	
         	
