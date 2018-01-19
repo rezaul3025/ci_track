@@ -82,11 +82,12 @@
 				    	</td>
 				    	<td>
 				    		<button ng-if="$index+1 == prescriptionItem.length" ng-click="addMoreMedication()"  class="btn btn-default" >More >></button>
+				    		<button ng-if="$index+1 != prescriptionItem.length" ng-click="removeMedication()"  class="btn btn-default" >Remove X</button>
 				    	</td>
 				    </tr> 
 				    <tr>
 				    	<td>
-				    		Any comments
+				    		<strong>Any comments</strong>
 				    	</td>
 				    	<td>
  				    		 <ci-text-area placeholder="Any comments" type="textarea" ng-model="prescription.comments" name="comments" rows="3" cols="20" mandatory="false" />

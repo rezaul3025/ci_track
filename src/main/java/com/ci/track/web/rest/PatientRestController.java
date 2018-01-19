@@ -28,7 +28,7 @@ import com.ci.track.persistance.service.PatientService;
 import com.ci.track.web.event.LabResult;
 import com.ci.track.web.event.LabTest;
 import com.ci.track.web.event.PatientInfo;
-import com.ci.track.web.event.PrescriptionInfo;
+import com.ci.track.web.event.Prescription;
 import com.ci.track.web.event.Test;
 
 @RestController
@@ -108,7 +108,7 @@ public class PatientRestController {
 	}
 	
 	@RequestMapping(value="/add-prescription", method=RequestMethod.POST)
-	public PrescriptionInfo addPrescription(@RequestBody PrescriptionInfo prescriptionInfo){
+	public Prescription addPrescription(@RequestBody Prescription prescriptionInfo){
 		
 		System.out.println(prescriptionInfo);
 		

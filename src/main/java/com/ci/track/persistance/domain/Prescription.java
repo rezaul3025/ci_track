@@ -1,18 +1,39 @@
-package com.ci.track.web.event;
+package com.ci.track.persistance.domain;
 
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity(name="prescription")
 public class Prescription {
 	
-	private Date date;
-	
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	@Column(name="doctor_id")
 	private Integer doctorId;
 	
 	private String comments;
 	
+	@Column(name="patient_id")
 	private Integer patientId;
 	
+	private Date date;
+	
+	@OneToMany(mappedBy = "prescription", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @JsonManagedReference
 	private List<PrescriptionItem> prescriptionItem;
 	
 	public Prescription(){
@@ -25,6 +46,14 @@ public class Prescription {
 		this.doctorId = doctorId;
 		this.patientId = patientId;
 		this.comments = comments;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public List<PrescriptionItem> getPrescriptionItem() {
@@ -71,6 +100,5 @@ public class Prescription {
 	public void setPatientId(Integer patientId) {
 		this.patientId = patientId;
 	}
-	
 	
 }

@@ -20,7 +20,7 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
         	$scope.submitted = true;
         	
         	var data = {
-        			"prescription":$scope.prescriptionItem,
+        			"prescriptionItem":$scope.prescriptionItem,
         			"date":new Date(),
         			"doctorId":232323,
         			"patientId":121212,
@@ -44,6 +44,10 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
 		
 		$scope.addMoreMedication = function(){
 			$scope.prescriptionItem.push({"description":"","dose":""});
+		}
+		
+		$scope.removeMedication = function(index){
+			$scope.prescriptionItem.splice(index, 1);
 		}
 		
 		$scope.resetDoes = function(index){
