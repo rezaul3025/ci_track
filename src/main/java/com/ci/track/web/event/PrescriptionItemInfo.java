@@ -1,6 +1,6 @@
 package com.ci.track.web.event;
 
-public class PrescriptionItem {
+public class PrescriptionItemInfo {
 	
 	private String description;
 	
@@ -8,11 +8,11 @@ public class PrescriptionItem {
 	
 	private String othersDose;
 	
-	public PrescriptionItem(){
+	public PrescriptionItemInfo(){
 		
 	}
 	
-	public PrescriptionItem(String description, String dose, String othersDose){
+	public PrescriptionItemInfo(String description, String dose, String othersDose){
 		this.description = description;
 		this.dose = dose;
 		this.othersDose =  othersDose;

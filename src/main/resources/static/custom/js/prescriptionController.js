@@ -23,7 +23,7 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
         			"prescriptionItem":$scope.prescriptionItem,
         			"date":new Date(),
         			"doctorId":232323,
-        			"patientId":121212,
+        			"patientId":$scope.patientId,
         			"comments":typeof prescription !='undefined'?prescription.comments:''
         	}
         	
@@ -43,7 +43,7 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
         }
 		
 		$scope.addMoreMedication = function(){
-			$scope.prescriptionItem.push({"description":"","dose":""});
+			$scope.prescriptionItem.push({"description":"","dose":"","othersDose":""});
 		}
 		
 		$scope.removeMedication = function(index){

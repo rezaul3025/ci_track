@@ -16,6 +16,7 @@ public class CiTrackController {
 	
 	@RequestMapping(value="/home")
 	public String moveHomePage(Model model){
+		
 		return "index";
 	}
 	

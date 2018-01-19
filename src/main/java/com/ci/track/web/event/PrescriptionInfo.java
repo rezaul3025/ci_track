@@ -3,7 +3,7 @@ package com.ci.track.web.event;
 import java.util.Date;
 import java.util.List;
 
-public class Prescription {
+public class PrescriptionInfo {
 	
 	private Date date;
 	
@@ -13,13 +13,13 @@ public class Prescription {
 	
 	private Integer patientId;
 	
-	private List<PrescriptionItem> prescriptionItem;
+	private List<PrescriptionItemInfo> prescriptionItem;
 	
-	public Prescription(){
+	public PrescriptionInfo(){
 		
 	}
 	
-	public Prescription(List<PrescriptionItem> prescriptionItem, Date date, Integer doctorId, Integer patientId, String comments){
+	public PrescriptionInfo(List<PrescriptionItemInfo> prescriptionItem, Date date, Integer doctorId, Integer patientId, String comments){
 		this.prescriptionItem = prescriptionItem;
 		this.date = date;
 		this.doctorId = doctorId;
@@ -27,11 +27,11 @@ public class Prescription {
 		this.comments = comments;
 	}
 
-	public List<PrescriptionItem> getPrescriptionItem() {
+	public List<PrescriptionItemInfo> getPrescriptionItem() {
 		return prescriptionItem;
 	}
 
-	public void setPrescriptionItem(List<PrescriptionItem> prescriptionItem) {
+	public void setPrescriptionItem(List<PrescriptionItemInfo> prescriptionItem) {
 		this.prescriptionItem = prescriptionItem;
 	}
 

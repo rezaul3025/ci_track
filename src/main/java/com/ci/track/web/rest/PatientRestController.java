@@ -1,9 +1,5 @@
 package com.ci.track.web.rest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -13,9 +9,6 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ci.track.persistance.domain.Patient;
-import com.ci.track.persistance.domain.User;
 import com.ci.track.persistance.service.PatientService;
 import com.ci.track.web.event.LabResult;
 import com.ci.track.web.event.LabTest;
 import com.ci.track.web.event.PatientInfo;
-import com.ci.track.web.event.Prescription;
+import com.ci.track.web.event.PrescriptionInfo;
 import com.ci.track.web.event.Test;
 
 @RestController
@@ -108,7 +100,7 @@ public class PatientRestController {
 	}
 	
 	@RequestMapping(value="/add-prescription", method=RequestMethod.POST)
-	public Prescription addPrescription(@RequestBody Prescription prescriptionInfo){
+	public PrescriptionInfo addPrescription(@RequestBody PrescriptionInfo prescriptionInfo){
 		
 		System.out.println(prescriptionInfo);
 		
