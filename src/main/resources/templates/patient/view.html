@@ -16,42 +16,91 @@
 	</div>
 	<div layout:fragment="content">
 		<h4>Patient details</h4>
-		
-		<table class="table">
-			<tr>
-				<th>ID</th>
-				<td>{{patient.id}}</td>
-			</tr>
-			<tr>
-				<th>Name</th>
-				<td>{{patient.firstName}} {{patient.lastName}}</td>
-			</tr>
-			<tr>
-				<th>Date of birth</th>
-				<td>{{patient.dob}}</td>
-			</tr>
-			<tr>
-				<th>Age</th>
-				<td>{{patient.age}}</td>
-			</tr>
-			<tr>
-				<th>Gender</th>
-				<td>{{patient.gender}}</td>
-			</tr>
-			<tr>
-				<th>Height(cm)</th>
-				<td>{{patient.height}}</td>
-			</tr>
-			<tr>
-				<th>Weight(kg)</th>
-				<td>{{patient.weight}}</td>
-			</tr>
-			<tr>
-				<th>Address</th>
-				<td>{{patient.address}}</td>
-			</tr>
-		</table>
-		
+		<div class="panel panel-primary">
+			<table class="table">
+				<tr>
+					<th>ID:</th>
+					<td>{{patient.id}}</td>
+					<th>Name:</th>
+					<td>{{patient.firstName}} {{patient.lastName}}</td>
+				</tr>
+				<tr>
+					<th>Date of birth:</th>
+					<td>{{patient.dob}}</td>
+					<th>Age:</th>
+					<td>{{patient.age}}</td>
+				</tr>
+				<tr>
+					<th>Gender:</th>
+					<td>{{patient.gender}}</td>
+					<th>Height(cm):</th>
+					<td>{{patient.height}}</td>
+				</tr>
+				<tr>
+					<th>Weight(kg):</th>
+					<td>{{patient.weight}}</td>
+					<th>Address:</th>
+					<td>{{patient.address}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-group" id="prescriptionAccordion" role="tablist" aria-multiselectable="true">
+		  <div class="panel panel-primary">
+		    <div class="panel-heading" role="tab" id="prescriptionInfo">
+		      <h4 class="panel-title">
+		        <a role="button" data-toggle="collapse" data-parent="#prescriptionAccordion" href="#prescriptionCollapse" aria-expanded="true" aria-controls="collapseOne">
+		          Prescription(s)
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="prescriptionCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="prescriptionInfo">
+		      <div class="panel-body">
+				<div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="prescriptionItemInfo">
+				      <h4 class="panel-title">
+				        <a role="button" data-toggle="collapse" data-parent="#prescriptionItemAccordion" href="#prescriptionItemCollapse" aria-expanded="true" aria-controls="collapseOne">
+				          Prescription - 1
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="prescriptionItemCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="prescriptionItemInfo">
+				      <div class="panel-body">
+				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				      </div>
+				    </div>
+				 </div>
+		      </div>
+		    </div>
+		  </div>
+		  <!-- <div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="headingTwo">
+		      <h4 class="panel-title">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+		          Collapsible Group Item #2
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+		      <div class="panel-body">
+		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="headingThree">
+		      <h4 class="panel-title">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+		          Collapsible Group Item #3
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+		      <div class="panel-body">
+		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+		      </div>
+		    </div>
+		  </div> -->
+		</div>
 		<script th:src="@{/custom/js/patientController.js}"></script>
 	</div>
 </body>

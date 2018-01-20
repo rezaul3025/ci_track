@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PrescriptionInfo {
 	
-	private Date date;
+	private Integer id;
 	
 	private Integer doctorId;
 	
@@ -14,6 +14,12 @@ public class PrescriptionInfo {
 	private Integer patientId;
 	
 	private List<PrescriptionItemInfo> prescriptionItem;
+	
+	private Date date;
+	
+	private Date modifiedDate;
+	
+	private Integer modifiedById;
 	
 	public PrescriptionInfo(){
 		
@@ -70,6 +76,30 @@ public class PrescriptionInfo {
 
 	public void setPatientId(Integer patientId) {
 		this.patientId = patientId;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+
+	public Integer getModifiedById() {
+		return modifiedById;
+	}
+
+	public void setModifiedById(Integer modifiedById) {
+		this.modifiedById = modifiedById;
 	}
 	
 	

@@ -168,7 +168,7 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                 		            "targets": 8,
                 		            "data": null,
                 		            "orderable": false,
-                		            "defaultContent": "<a id='addprescription' href='#'>Add prescription</a><br/><a id='addprescription' href='#'>Add test</a>"
+                		            "defaultContent": "<a id='addprescription' class ='btn btn-default' href='#'>Add Prescription</a><br/><a style='margin-top:3px;' class='btn btn-default' id='addprescription' href='#'>Add test</a>"
                 		        } ]
                 		    }
                 	);

@@ -8,8 +8,9 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
         var header = $("meta[name='_csrf_header']").attr("content");
         $http.defaults.headers.common[header] = token;
 		
-		$scope.init = function(id){
+		$scope.init = function(id, userId){
         	$scope.patientId = id;
+        	$scope.userId = userId;
         }
 		
 		$scope.submitted = false;
@@ -22,8 +23,10 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
         	var data = {
         			"prescriptionItem":$scope.prescriptionItem,
         			"date":new Date(),
-        			"doctorId":232323,
+        			"doctorId":$scope.userId,
         			"patientId":$scope.patientId,
+        			"modifiedDate":null,
+        			"modifiedById":null,
         			"comments":typeof prescription !='undefined'?prescription.comments:''
         	}
         	

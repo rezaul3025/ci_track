@@ -22,4 +22,11 @@ public class PrescriptionRestController {
 		prescriptionService.addPrescription(prescriptionInfoatientInfo);
 		return prescriptionInfoatientInfo;
 	}
+	
+	@RequestMapping(value="/add", method=RequestMethod.POST)
+	public PrescriptionInfo findBy(@RequestBody PrescriptionInfo prescriptionInfoatientInfo){
+		
+		prescriptionService.addPrescription(prescriptionInfoatientInfo);
+		return prescriptionInfoatientInfo;
+	}
 }

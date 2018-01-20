@@ -8,5 +8,5 @@ import com.ci.track.persistance.domain.PrescriptionItem;
 
 @Repository
 public interface PrescriptionItemRepository extends JpaRepository<PrescriptionItem, Integer>{
-
+	
 }

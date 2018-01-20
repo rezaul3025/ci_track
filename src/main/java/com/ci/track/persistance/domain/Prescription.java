@@ -32,6 +32,12 @@ public class Prescription {
 	
 	private Date date;
 	
+	@Column(name="modified_date")
+	private Date modifiedDate;
+	
+	@Column(name="modified_by_id")
+	private Integer modifiedById;
+	
 	@OneToMany(mappedBy = "prescription", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JsonManagedReference
 	private List<PrescriptionItem> prescriptionItem;
@@ -99,6 +105,22 @@ public class Prescription {
 
 	public void setPatientId(Integer patientId) {
 		this.patientId = patientId;
+	}
+
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+
+	public Integer getModifiedById() {
+		return modifiedById;
+	}
+
+	public void setModifiedById(Integer modifiedById) {
+		this.modifiedById = modifiedById;
 	}
 	
 }

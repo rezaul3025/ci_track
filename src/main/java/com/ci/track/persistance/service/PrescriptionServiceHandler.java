@@ -37,5 +37,10 @@ public class PrescriptionServiceHandler implements PrescriptionService {
 		
 		return prescription;
 	}
+	
+	@Override
+	public List<Prescription> findByPatientId(Integer id){
+		return prescriptionRepository.findByPatientId(id);
+	}
 
 }
