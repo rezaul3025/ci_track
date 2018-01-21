@@ -208,6 +208,7 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
         
         $scope.init = function(id){
         	$scope.patientById(id);
+        	$scope.loadPrescriptions(id);
         }
         
         $scope.patientById = function(id){
@@ -217,6 +218,18 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                 params: {}
             }).then(function succes(response) {
                 $scope.patient = response.data;
+                
+            }, function error(response) {
+            });
+        };
+        
+        $scope.loadPrescriptions = function(patientId){
+        	$http({
+                method: "GET",
+                url: "/rest/prescription/patient/"+patientId,
+                params: {}
+            }).then(function succes(response) {
+                $scope.prescriptions = response.data;
                 
             }, function error(response) {
             });

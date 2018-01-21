@@ -43,7 +43,7 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
 	            });
         	}
         	
-        }
+        };
 		
 		$scope.addMoreMedication = function(){
 			$scope.prescriptionItem.push({"description":"","dose":"","othersDose":""});
