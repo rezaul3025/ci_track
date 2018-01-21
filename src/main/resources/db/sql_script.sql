@@ -43,3 +43,6 @@ CREATE TABLE `prescription_item` (
   KEY `FKeykn9e2g6nbmvwhqbrdm3jb2p` (`prescription_id`),
   CONSTRAINT `FKeykn9e2g6nbmvwhqbrdm3jb2p` FOREIGN KEY (`prescription_id`) REFERENCES `prescription` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--mongod --dbpath /Users/rkarim/works/mongodb/data/db
