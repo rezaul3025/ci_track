@@ -42,7 +42,7 @@ public class DatabaseConfig {
 	private static final String PROPERTY_NAME_PACKAGES_SCAN = "hibernate.package.scan";
 	private static final String PROPERTY_NAME_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
 
-	@Bean
+	/*@Bean
 	public EntityManagerFactory entityManagerFactory() throws ClassNotFoundException, IOException {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
@@ -60,7 +60,7 @@ public class DatabaseConfig {
 	public JdbcTemplate getJdbcTemplate() {
 		return new JdbcTemplate(dataSource);
 	}
-	
+	*/
 	/*@Bean
 	public DataSource dataSource() {
 
@@ -74,20 +74,20 @@ public class DatabaseConfig {
 		return db;
 	}*/
 	
-	@Bean
+	/*@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory)
 			throws SQLException {
 		JpaTransactionManager txManager = new JpaTransactionManager();
 		txManager.setEntityManagerFactory(entityManagerFactory);
 		return txManager;
-	}
+	}*/
 
 	/*@Bean
 	public HibernateExceptionTranslator hibernateExceptionTranslator() {
 		return new HibernateExceptionTranslator();
 	}*/
 
-	@Bean
+	/*@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
@@ -106,6 +106,6 @@ public class DatabaseConfig {
 		properties.put(PROPERTY_NAME_HBM2DDL_AUTO, env.getRequiredProperty(PROPERTY_NAME_HBM2DDL_AUTO));
 		//properties.put("hibernate.hbm2ddl.import_files", env.getRequiredProperty("hibernate.hbm2ddl.import_files"));
 		return properties;
-	}
+	}*/
 
 }
