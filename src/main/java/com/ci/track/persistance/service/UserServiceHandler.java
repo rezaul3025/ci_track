@@ -1,5 +1,7 @@
 package com.ci.track.persistance.service;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,6 +34,12 @@ public class UserServiceHandler implements UserService {
         user.setRole(user.getDesignation()!=null && user.getDesignation().equals("Doctor")?"DOCTOR":"OTHERS");
 		userRepository.save(user);
 		return user;
+	}
+
+	@Override
+	public List<User> findByIds(List<String> ids) {
+		List<User> users = userRepository.findByIdIn(ids);
+		return users;
 	}
 
 }

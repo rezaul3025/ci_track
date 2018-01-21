@@ -1,7 +1,7 @@
 <html lang="en" layout:decorator="/layout" ng-app="ciTrackApp">
 <head>
 </head>
-<body ng-controller="PatientController" th:attr="ng-init='init(\''+${id}+'\')'">
+<body ng-controller="PatientController" th:attr="ng-init='init(\''+${id}+'\',\''+${#authentication.getPrincipal().getUser().getId()}+'\')'">
 	<div layout:fragment="sidebar">
 		<h3>Actions</h3>
 		<hr/>
@@ -60,7 +60,7 @@
 					    <div class="panel-heading" role="tab" id="headingPrescriptionItem{{$index}}">
 					      <h4 class="panel-title">
 					        <a role="button" data-toggle="collapse" data-parent="#prescriptionItemAccordion" href="#collapsePrescriptionItem{{$index}}" aria-expanded="true" aria-controls="collapsePrescriptionItem{{$index}}">
-					          {{pres.date}}-{{pres.patientId}}
+					          Date: {{pres.date}} ({{pres.patientId}})
 					        </a>
 					      </h4>
 					    </div>
@@ -70,15 +70,15 @@
 		  					<div th:replace="/message/validation.error.message :: validationErrorMessage" />
 						      	<table class="table">
 								    <tr>
-								    	<th>Description</th>
-								    	<th>Dose</th>
-								    	<th></th>
+								    	<th style="background-color: #fcf8e3">Description</th>
+								    	<th style="background-color: #fcf8e3">Dose</th>
+								    	<th style="background-color: #f2dede;"></th>
 								    </tr>
-								    <tr ng-repeat="presItem in pres.prescriptionItem">
-								    	<td>
+								    <tr ng-repeat="presItem in pres.prescriptionItem" >
+								    	<td style="background-color: #dff0d8">
 								    		<ci-text-field mandatory="true" placeholder="Medication description"  ng-model="presItem.description" name="description" errormessage="medicationDescErrorMessage"/>
 								    	</td>
-								    	<td>
+								    	<td style="background-color: #dff0d8">
 								    		<label class="radio-inline">
 											  <input type="radio" name="doseOptions{{$index}}" id="doseOptions111" ng-model="presItem.dose" value="1+1+1" required=""/> 1+1+1
 											</label>
@@ -106,24 +106,36 @@
 												<button type="button" ng-click="resetDoes($index)"> Reset</button>
 											</label>
 								    	</td>
-								    	<td>
+								    	<td style="background-color: #f2dede;">
 								    		<button ng-if="$index+1 == prescriptionItem.length" ng-click="addMoreMedication()"  class="btn btn-default" >More >></button>
 								    		<button ng-if="$index+1 != prescriptionItem.length" ng-click="removeMedication()"  class="btn btn-default" >Remove X</button>
 								    	</td>
 								    </tr> 
 								    <tr>
-								    	<td>
+								    	<td style="background-color: #dff0d8">
 								    		<strong>Any comments</strong>
 								    	</td>
-								    	<td>
+								    	<td style="background-color: #dff0d8">
 				 				    		 <ci-text-area placeholder="Any comments" type="textarea" ng-model="pres.comments" name="comments" rows="3" cols="20" mandatory="false" />
 				 				    	</td>
-								    	<td>
+								    	<td style="background-color: #f2dede;">
+								    	</td>
+								    </tr>
+								    <tr>
+								    	<td style="background-color: #fcf8e3">
+								    		<strong>Prescribed By:</strong>
+								    	</td>
+								    	<td style="background-color: #fcf8e3;font-style: italic;">
+								    			{{doctorsIdMap[pres.doctorId].title}} {{doctorsIdMap[pres.doctorId].firstName}} {{doctorsIdMap[pres.doctorId].lastName}} <br/>
+								    			{{doctorsIdMap[pres.doctorId].drqualifications}}
+				 				    	</td>
+								    	<td style="background-color: #f2dede;">
 								    	</td>
 								    </tr>
 								    <tr>
 								    	<td>
-								    		 <button type="submit" class="btn btn-default" >ADD</button>
+								    		 <button ng-disabled="userId!=doctorsIdMap[pres.doctorId].id" type="submit" class="btn btn-default" >Save</button>
+								    		 <button ng-disabled="userId!=doctorsIdMap[pres.doctorId].id" type="submit" class="btn btn-default" >Print</button>
 								    	</td>
 								    	<td>
 								    	</td>

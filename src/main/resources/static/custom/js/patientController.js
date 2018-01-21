@@ -206,9 +206,11 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
             });
         };
         
-        $scope.init = function(id){
+        $scope.init = function(id, userId){
         	$scope.patientById(id);
         	$scope.loadPrescriptions(id);
+        	$scope.patientId = id;
+        	$scope.userId =  userId;
         }
         
         $scope.patientById = function(id){
@@ -231,7 +233,35 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
             }).then(function succes(response) {
                 $scope.prescriptions = response.data;
                 
+                var ids = [];
+                for(p in $scope.prescriptions){
+                	ids.push($scope.prescriptions[p].doctorId);
+                }
+                
+                if(ids.length>0){
+                	 findDoctorsByIds(ids);
+                }
+                
             }, function error(response) {
+            });
+        };
+        
+        $scope.doctorsIdMap = {};
+        
+        findDoctorsByIds = function(ids){
+        	$http({
+                method: "POST",
+                url: "/rest/user/find_by_ids",
+                data: ids,
+            }).then(function mySucces(response) {
+            	$scope.doctors = response.data;
+            	if(typeof $scope.doctors != 'undefined' && $scope.doctors.length > 0){
+            		for(d in $scope.doctors){
+            			$scope.doctorsIdMap[$scope.doctors[d].id]=$scope.doctors[d];
+            		}
+            	}
+            }, function myError(response) {
+               
             });
         };
 

@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style th:inline="text">
+        /*<![CDATA[*/
+        /* header and footer */
+
+        div.header {
+            display: block;
+            position: running(header);
+        }
+
+        div.footer {
+            display: block;
+            position: running(footer);
+        }
+
+        /*div.content {*/
+            /*page-break-after: always;*/
+        /*}*/
+
+        @page {
+            background-image: url("[[${baseUrl}]]/static/images/Helix_background.jpg");
+        }
+
+        @page {
+            display: inline-block;
+            @top-center {
+                content: element(header)
+            }
+        }
+
+        @page {
+            display: inline-block;
+            @bottom-center {
+                content: element(footer)
+            }
+        }
+
+        @page {
+            display: inline-block;
+            counter-increment: page;
+            counter-reset: page 1;
+            font-size: 10px;
+            @bottom-left {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        }
+
+        /* ######### */
+
+        .smallFont {
+            font-size: 10px;
+        }
+
+        .positionLeft50 {
+            margin-left: 50px;
+        }
+
+        .textAlignRight {
+            text-align: right;
+        }
+
+        .positionCenter {
+            margin: 0 auto;
+            width: 100px;
+            display: inline-block;
+            overflow: hidden;
+
+        }
+
+        .positionRight {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+        }
+
+        .marginTop50 {
+            margin-top: 50px;
+        }
+
+        .marginTop100 {
+            margin-top: 100px;
+        }
+
+        .titleText {
+            color: #D41030;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .pageText {
+            color: #D41030;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .firstPageTableStyle {
+            width: 100%;
+            font-size: 16px;
+            border-collapse: collapse;
+        }
+
+        .geneInfoTableStyle {
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        .geneInfoTableStyle td, .geneInfoTableStyle th {
+            font-size: 12px;
+            border: 0.5px solid #000000;
+        }
+
+        #variantInfoTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #variantInfoTable td, #variantInfoTable th {
+            font-size: 10px;
+            border: 0.5px solid #000000;
+            text-align: center;
+        }
+
+        .tableRedHeader {
+            font-size: 10px;
+            text-align: center;
+            background-color: #D41030;
+            font-weight: bold;
+            color: white;
+            border: 0.5px solid #000000;
+        }
+
+        .tableGreyHeader {
+            font-size: 10px;
+            text-align: center;
+            background-color: rgb(125, 123, 123);
+            font-weight: bold;
+            color: white;
+            border: 0.5px solid #000000;
+        }
+
+        #variantInfoTable tfoot td {
+            border-collapse: collapse;
+            border: 0px;
+            text-align: left;
+        }
+
+        .legenTableStyle {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .legenTableStyle td, .legenTableStyle th {
+            font-size: 12px;
+            border: 0.5px solid #000000;
+            /*
+            border-top:0.5px solid #D41030;
+            border-bottom:0.5px solid #D41030;
+            border-left:0.5px solid rgb(212,212,212);
+            border-right:0.5px solid rgb(212,212,212);
+            */
+        }
+
+        .redBold {
+            font-weight: bold;
+            color: #D41030;
+        }
+
+        .userProvidedContent {
+            color: #2d89ef;
+        }
+
+        table {
+            -fs-table-paginate: paginate;
+            border-spacing: 0;
+        }
+
+        tr {
+            page-break-inside:avoid;
+            page-break-after:auto
+        }
+
+        #userCommentArea {
+            width: 100%;
+            word-wrap: break-word
+        }
+
+        /*]]>*/
+    </style>
+</head>
+
+<body>
+
+<div class='header'>
+    <img style="width:150px" class="positionLeft" th:attr="src='__${baseUrl}__/static/cglogo.png'"
+         alt="Centogene logo"></img>
+			<span class="positionRight">
+				<table class="smallFont">
+                    <tbody>
+                    <tr>
+                        <td>Transaction ID:</td>
+                        <td><span th:text="${issuingUserBusinessPartnerId}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+			</span>
+</div>
+<div class='footer'>
+    <img style="width:100px" class="positionCenter"
+         th:attr="src='__${baseUrl}__/static/images/centoMD.png'" alt="Centogene logo"></img>
+			<span class="positionRight">
+				<table class="smallFont textAlignRight">
+                    <tbody>
+                    <tr>
+                        <td>Genetic summary issued for <span th:text="${issuingTitle}"></span>&#160;<span
+                                th:text="${issuingUserFirstName}"></span>&#160;<span
+                                th:text="${issuingUserLastName}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>on <span th:text="${issuingTimestamp}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+			</span>
+
+</div>
+<div class='content'>
+
+    <div>
+        <img style="width:250px" class="positionLeft"
+             th:attr="src='__${baseUrl}__/static/images/centoMD.png'" alt="Centogene logo"></img>
+        <span class="titleText"> Genetic summary</span>
+    </div>
+    <div class="marginTop50">
+        <table class="firstPageTableStyle redBold">
+            <tbody>
+            <tr>
+                <td>OMIM/Gene,&#160;Transcript,&#160;Variant:</td>
+            </tr>
+            <tr th:each="dataHeaderItem, rowInfo : ${dataHeader}">
+                <td>
+                    <span th:text="${rowInfo.count}"></span>.&#160;
+                    <span th:text="${dataHeaderItem[0]}"></span>,&#160;
+                    <span th:text="${dataHeaderItem[3]}"></span>,&#160;
+                    <span th:text="${dataHeaderItem[5]}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="marginTop50">
+        <table class="firstPageTableStyle">
+            <tbody>
+            <tr>
+                <td><span class="pageText">Issued for</span></td>
+                <td>
+                    <span th:text="${issuingTitle}"></span>
+                    <span th:text="${issuingUserFirstName}"></span>
+                    <span th:text="${issuingUserLastName}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span th:text="${issuingUserBusinessPartnerName}"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2">&#160;</td>
+            </tr>
+            <tr>
+                <td colspan="2">&#160;</td>
+            </tr>
+            <tr>
+                <td><span class="pageText">On</span></td>
+                <td><b><span th:text="${issuingTimestamp}"></span></b></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span
+                        class="smallFont redBold">(Date format: YYYY/MM/DD, HH:mm:ss time zone)</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="marginTop100">
+        <table class="firstPageTableStyle">
+            <tbody>
+            <tr>
+                <td width="200px"><span class="pageText">Case ID<span class="smallFont"><i> [as
+                    provided by the user]</i></span>: </span>
+                    <span class="userProvidedContent" th:text="${reportTitle}"></span>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2">&#160;</td>
+            </tr>
+            <tr>
+                <td width="250px"><span class="pageText">Additional remarks<span
+                        class="smallFont"><i> [as provided by the user]</i></span>:</span></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span id="userCommentArea" class="userProvidedContent"
+                          th:text="${reportComment}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div th:each="dataHeaderItem, rowInfo : ${dataHeader}">
+
+        <div style="page-break-after:always"></div>
+        <p><span class="pageText"><span th:text="${rowInfo.count}"></span>.&#160;&#160;<span
+                th:text="${dataHeaderItem[0]}"></span>,&#160;<span
+                th:text="${dataHeaderItem[3]}"></span>,&#160;<span
+                th:text="${dataHeaderItem[5]}"></span></span></p>
+
+
+        <table class="geneInfoTableStyle">
+            <tbody>
+            <tr>
+                <td><b>OMIM/Gene</b></td>
+                <td><span th:text="${dataHeaderItem[0]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>OMIM/Associated disease(s)</b></td>
+                <td><span th:text="${dataHeaderItem[1]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>Genomic DNA change</b></td>
+                <td><span th:text="${dataHeaderItem[2]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>Selected transcript</b></td>
+                <td><span th:text="${dataHeaderItem[3]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>Location on selected transcript</b></td>
+                <td><span th:text="${dataHeaderItem[4]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>cDNA on selected transcript</b></td>
+                <td><span th:text="${dataHeaderItem[5]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>Protein change on selected transcript</b></td>
+                <td><span th:text="${dataHeaderItem[6]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>CentoMD&#xAE; transcript</b></td>
+                <td><span th:text="${dataHeaderItem[7]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>Location on CentoMD&#xAE; transcript</b></td>
+                <td><span th:text="${dataHeaderItem[8]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>cDNA on CentoMD&#xAE; transcript</b></td>
+                <td><span th:text="${dataHeaderItem[9]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>Protein change on CentoMD&#xAE; transcript</b></td>
+                <td><span th:text="${dataHeaderItem[10]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>Mutation type</b></td>
+                <td><span th:text="${dataHeaderItem[11]}"></span></td>
+            </tr>
+            <tr>
+                <td><b>Screening method</b></td>
+                <td><span th:text="${dataHeaderItem[12]}"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2" bgcolor="#D41030">&#160;</td>
+            </tr>
+            <tr>
+                <th><span class="redBold">PMID/dbSNP</span></th>
+                <td><b><span th:text="${dataHeaderItem[13]}"></span></b></td>
+            </tr>
+            <tr>
+                <th><span class="redBold">Publication status</span></th>
+                <td><b><span th:text="${dataHeaderItem[14]}"></span></b></td>
+            </tr>
+            <tr>
+                <th><span class="redBold">Absolute observed frequency</span></th>
+                <td><b><span th:text="${dataHeaderItem[17]}"></span></b></td>
+            </tr>
+            <tr>
+                <th><span class="redBold">Relative observed frequency (in %)</span></th>
+                <td><b>≈<span th:text="${dataHeaderItem[16]}"></span></b></td>
+            </tr>
+            <tr>
+                <th><span class="redBold">Clinical significance according to CentoMD&#xAE;</span>
+                </th>
+                <td><b><span th:text="${dataHeaderItem[15]}"></span></b></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>This variant has been detected at CENTOGENE in the following cases.</p>
+
+        <table id="variantInfoTable">
+
+            <thead>
+            <tr>
+                <th class="tableRedHeader" colspan="4">General information on the case</th>
+                <th class="tableRedHeader" colspan="6">Demographic and Phenotype information on the
+                    patient
+                </th>
+                <th class="tableRedHeader" th:if="${hasBioInfo[rowInfo.index] == true}">&#160;</th>
+                <th class="tableRedHeader" th:if="${hasBioInfo[rowInfo.index] == true}">&#160;</th>
+                <th class="tableRedHeader" colspan="3">Genetics</th>
+                <th class="tableRedHeader"></th>
+            </tr>
+            <tr>
+                <th class="tableGreyHeader">#</th>
+
+                <th class="tableGreyHeader">Year<br/>of analysis<sup>1</sup></th>
+                <th class="tableGreyHeader">OMIM/Suspected<br/>disease<sup>2</sup></th>
+                <th class="tableGreyHeader">MOI<sup>3</sup></th>
+                <th class="tableGreyHeader">Age<sup>4</sup></th>
+                <th class="tableGreyHeader">Sex</th>
+                <th class="tableGreyHeader">Country<sup>5</sup></th>
+                <th class="tableGreyHeader">ARFN<sup>6</sup></th>
+                <th class="tableGreyHeader">Pedigree</th>
+                <th class="tableGreyHeader">Clinical<br/>signs &amp;<br/>affected<br/>organs</th>
+                <th class="tableGreyHeader" th:if="${hasBioInfo[rowInfo.index] == true}">Enzyme<br/>level
+                </th>
+                <th class="tableGreyHeader" th:if="${hasBioInfo[rowInfo.index] == true}">
+                    Biomarker<br/>level
+                </th>
+                <th class="tableGreyHeader">Variant<br/>zygosity<sup>7</sup></th>
+                <th class="tableGreyHeader">Total<br/>number<br/>of<br/>variants<sup>8</sup></th>
+                <th class="tableGreyHeader">Genotype<sup>9</sup></th>
+                <th class="tableGreyHeader">Final<br/>statement</th>
+
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <td colspan="14">
+                    <table>
+                        <tr>
+                            <td width="20px">1)</td>
+                            <td>Year of analysis and documentation at CENTOGENE</td>
+                        </tr>
+                        <tr>
+                            <td width="20px">2)</td>
+                            <td>OMIM number of the disease suspected by the corresponding physician according to the clinical symptoms</td>
+                        </tr>
+                        <tr>
+                            <td width="20px">3)</td>
+                            <td>Mode of inheritance</td>
+                        </tr>
+                        <tr>
+                            <td width="20px">4)</td>
+                            <td>Age at diagnosis in years</td>
+                        </tr>
+                        <tr>
+                            <td width="20px">5)</td>
+                            <td>Country of sample origin</td>
+                        </tr>
+                        <tr>
+                            <td width="20px">6)</td>
+                            <td>Anonymized random family number</td>
+                        </tr>
+                        <tr>
+                            <td width="20px">7)</td>
+                            <td>Indication if the variant is detected on one chromosome or on both
+                                chromosomes
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20px">8)</td>
+                            <td>Total number of detected variants for this case (clinically relevant
+                                ; clinically irrelevant) on this particular gene
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20px">9)</td>
+                            <td>Genetic constitution of this case with respect to the number of
+                                alleles and their clinical significance for this particular gene
+                            </td>
+                        </tr>
+                        <tr th:if="${hasNotApplicable[rowInfo.index]}">
+                            <td width="20px">*)</td>
+                            <td>not applicable</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            </tfoot>
+            <tbody th:each="variantRow,variantRowInfo : ${dataVariant[rowInfo.index]}">
+            <tr>
+                <td><span th:text="${variantRowInfo.count}"></span></td>
+
+                <td><span th:text="${variantRow[7]}"></span></td>
+                <td><span th:text="${variantRow[2]}"></span></td>
+                <td><span th:text="${variantRow[3]}"></span></td>
+                <td><span th:text="${variantRow[6]}"></span></td>
+                <td><span th:text="${variantRow[5]}"></span></td>
+                <td><span th:text="${variantRow[1]}"></span></td>
+                <td><span th:text="${variantRow[13]}"></span></td>
+                <td><span th:text="${variantRow[0]}"></span></td>
+                <td width="100px"><span th:text="${variantRow[8]}"></span></td>
+                <td th:if="${hasBioInfo[rowInfo.index] == true}"><span
+                        th:text="${variantRow[11]}"></span></td>
+                <td th:if="${hasBioInfo[rowInfo.index] == true}"><span
+                        th:text="${variantRow[12]}"></span></td>
+                <td><span th:text="${variantRow[4]}"></span></td>
+                <td><span th:text="${variantRow[14]}"></span> (<span
+                        th:text="${variantRow[15]}"></span>;<span
+                        th:text="${variantRow[16]}"></span>)
+                </td>
+                <td><span th:text="${variantRow[9]}"></span></td>
+
+
+                <td><span th:text="${variantRow[10]}"></span></td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <div style="page-break-after:always"></div>
+
+    <p><span class="redBold">Legend</span></p>
+
+    <p>A brief overview of the abbreviations and their definitions is provided in the following
+        tables (see the detailed documentation/glossary for more information).</p>
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <table class="legenTableStyle">
+                        <tbody>
+                        <tr>
+                            <th class="tableRedHeader">MOI</th>
+                            <th class="tableRedHeader">Mode of Inheritance</th>
+                        </tr>
+                        <tr>
+                            <th class="tableGreyHeader"><b>Abbreviation</b></th>
+                            <th class="tableGreyHeader"><b>Definition</b></th>
+                        </tr>
+                        <tr>
+                            <td>AD</td>
+                            <td>Autosomal dominant</td>
+                        </tr>
+                        <tr>
+                            <td>AR</td>
+                            <td>Autosomal recessive</td>
+                        </tr>
+                        <tr>
+                            <td>Di</td>
+                            <td>Digenic</td>
+                        </tr>
+                        <tr>
+                            <td>Imp/Epi</td>
+                            <td>Imprinting/Epigenetic</td>
+                        </tr>
+                        <tr>
+                            <td>Mito</td>
+                            <td>Mitochrondrial</td>
+                        </tr>
+                        <tr>
+                            <td>MF</td>
+                            <td>Multifactoral</td>
+                        </tr>
+                        <tr>
+                            <td>P-AD</td>
+                            <td>Pseudoautosomal dominant</td>
+                        </tr>
+                        <tr>
+                            <td>X</td>
+                            <td>X-linked</td>
+                        </tr>
+                        <tr>
+                            <td>Y</td>
+                            <td>Y-linked</td>
+                        </tr>
+                        <tr>
+                            <td>?</td>
+                            <td>Unknown</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <pre>	</pre>
+            </td>
+            <td>
+                <div>
+                    <table class="legenTableStyle">
+                        <tbody>
+                        <tr>
+                            <th class="tableRedHeader" colspan="2">Genotype</th>
+                        </tr>
+                        <tr>
+                            <th class="tableGreyHeader"><b>Abbreviation</b></th>
+                            <th class="tableGreyHeader"><b>Definition</b></th>
+                        </tr>
+                        <tr>
+                            <td>Comp Het</td>
+                            <td>Compound heterozygote</td>
+                        </tr>
+                        <tr>
+                            <td>Hemi</td>
+                            <td>Hemizygote</td>
+                        </tr>
+                        <tr>
+                            <td>Het</td>
+                            <td>Heterozygote</td>
+                        </tr>
+                        <tr>
+                            <td>Homo</td>
+                            <td>Homozygote</td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td>Other/complex</td>
+                        </tr>
+                        <tr>
+                            <td>WT</td>
+                            <td>Wildtype</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <pre>	</pre>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <table class="legenTableStyle">
+                        <tbody>
+                        <tr>
+                            <th class="tableRedHeader" colspan="2">Variant zygosity</th>
+                        </tr>
+                        <tr>
+                            <th class="tableGreyHeader"><b>Abbreviation</b></th>
+                            <th class="tableGreyHeader"><b>Definition</b></th>
+                        </tr>
+                        <tr>
+                            <td>Hemi</td>
+                            <td>Hemizygous</td>
+                        </tr>
+                        <tr>
+                            <td>Het</td>
+                            <td>Heterozygous</td>
+                        </tr>
+                        <tr>
+                            <td>Homo</td>
+                            <td>Homozygous</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td>
+                <pre>	</pre>
+            </td>
+            <td>
+                <div>
+                    <table class="legenTableStyle">
+                        <tbody>
+                        <tr>
+                            <th class="tableRedHeader" colspan="2">Biomarker/Enzyme level</th>
+                        </tr>
+                        <tr>
+                            <th class="tableGreyHeader"><b>Abbreviation</b></th>
+                            <th class="tableGreyHeader"><b>Definition</b></th>
+                        </tr>
+                        <tr>
+                            <td>N</td>
+                            <td>Normal</td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>Pathological</td>
+                        </tr>
+                        <tr>
+                            <td>SD</td>
+                            <td>Slightly decreased</td>
+                        </tr>
+                        <tr>
+                            <td>SI</td>
+                            <td>Slightly increased</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
