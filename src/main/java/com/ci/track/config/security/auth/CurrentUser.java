@@ -22,7 +22,7 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 		return this.user;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return this.user.getId();
 	}
 	

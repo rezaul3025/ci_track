@@ -3,50 +3,47 @@ package com.ci.track.persistance.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity(name="prescription")
+//@Entity(name="prescription")
+@Document(collection = "prescription")
 public class Prescription {
 	
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	//@Column(name="id")
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
 
-	@Column(name="doctor_id")
-	private Integer doctorId;
+	//@Column(name="doctor_id")
+	private String doctorId;
 	
 	private String comments;
 	
-	@Column(name="patient_id")
-	private Integer patientId;
+	//@Column(name="patient_id")
+	private String patientId;
 	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm" ,locale="de", timezone="GMT+1")
 	private Date date;
 	
-	@Column(name="modified_date")
+	//@Column(name="modified_date")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm" ,locale="de", timezone="GMT+1")
 	private Date modifiedDate;
 	
-	@Column(name="modified_by_id")
-	private Integer modifiedById;
+	//@Column(name="modified_by_id")
+	private String modifiedById;
 	
-	@OneToMany(mappedBy = "prescription", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @JsonManagedReference
+	//@OneToMany(mappedBy = "prescription", fetch=FetchType.EAGER,  cascade=CascadeType.ALL)
+    //@JsonManagedReference
 	private List<PrescriptionItem> prescriptionItem;
 	
 	public Prescription(){
 		
 	}
 	
-	public Prescription(List<PrescriptionItem> prescriptionItem, Date date, Integer doctorId, Integer patientId, String comments){
+	public Prescription(List<PrescriptionItem> prescriptionItem, Date date, String doctorId, String patientId, String comments){
 		this.prescriptionItem = prescriptionItem;
 		this.date = date;
 		this.doctorId = doctorId;
@@ -54,11 +51,11 @@ public class Prescription {
 		this.comments = comments;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -78,19 +75,14 @@ public class Prescription {
 		this.date = date;
 	}
 
-	public Integer getDoctorId() {
+	public String getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(Integer doctorId) {
+	public void setDoctorId(String doctorId) {
 		this.doctorId = doctorId;
 	}
 	
-	@Override
-	public String toString(){
-		return this.prescriptionItem+" "+this.date+" "+this.doctorId;
-	}
-
 	public String getComments() {
 		return comments;
 	}
@@ -99,11 +91,11 @@ public class Prescription {
 		this.comments = comments;
 	}
 
-	public Integer getPatientId() {
+	public String getPatientId() {
 		return patientId;
 	}
 
-	public void setPatientId(Integer patientId) {
+	public void setPatientId(String patientId) {
 		this.patientId = patientId;
 	}
 
@@ -115,12 +107,17 @@ public class Prescription {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public Integer getModifiedById() {
+	public String getModifiedById() {
 		return modifiedById;
 	}
 
-	public void setModifiedById(Integer modifiedById) {
+	public void setModifiedById(String modifiedById) {
 		this.modifiedById = modifiedById;
+	}
+	
+	@Override
+	public String toString(){
+		return this.prescriptionItem+" "+this.date+" "+this.doctorId;
 	}
 	
 }

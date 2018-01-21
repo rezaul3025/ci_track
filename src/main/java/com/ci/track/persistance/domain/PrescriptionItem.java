@@ -4,30 +4,32 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.annotation.Id;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity(name="prescription_item")
+//@Entity(name="prescription_item")
 public class PrescriptionItem {
 	
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	//@Column(name="id")
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
 	
 	private String description;
 	
 	private String dose;
 	
-	@Column(name="others_dose")
+	//@Column(name="others_dose")
 	private String othersDose;
 	
-	@ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "prescription_id", referencedColumnName = "id")
+	//@ManyToOne
+    //@JsonBackReference
+    //@JoinColumn(name = "prescription_id", referencedColumnName = "id")
 	private Prescription prescription;
 	
 	public PrescriptionItem(){
@@ -40,11 +42,11 @@ public class PrescriptionItem {
 		this.othersDose =  othersDose;
 	}
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

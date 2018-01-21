@@ -1,7 +1,7 @@
 <html lang="en" layout:decorator="/layout" ng-app="ciTrackApp">
 <head>
 </head>
-<body ng-controller="PrescriptionController" th:attr="ng-init='init('+${id}+','+${#authentication.getPrincipal().getUser().getId()}+')'">
+<body ng-controller="PrescriptionController" th:attr="ng-init='init(\''+${id}+'\',\''+${#authentication.getPrincipal().getUser().getId()}+'\')'">
 	<div layout:fragment="sidebar">
 		<h2>Side bar {{patientId}}, {{userId}}
 		</h2>

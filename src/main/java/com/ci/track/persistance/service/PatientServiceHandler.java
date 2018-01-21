@@ -25,7 +25,7 @@ public class PatientServiceHandler implements PatientService {
 							&& patient.getAge() != null 
 							&& patient.getAddress() != null && !patient.getAddress().isEmpty();
 		if(validPatient){
-			patientRepo.saveAndFlush(patient);
+			patientRepo.save(patient);
 		}
 		
 		return patient;
@@ -37,7 +37,7 @@ public class PatientServiceHandler implements PatientService {
 	}
 
 	@Override
-	public Patient findById(Integer id) {
+	public Patient findById(String id) {
 		return patientRepo.findOne(id);
 	}
 

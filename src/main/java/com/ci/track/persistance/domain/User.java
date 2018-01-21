@@ -1,43 +1,43 @@
 package com.ci.track.persistance.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@Entity(name="user_info")
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+//@Entity(name="user_info")
+@Document(collection = "user_info")
 public class User {
 	
 	@Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+    //@Column(name="id")
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
 	
 	private String title;
 	
-	@Column(name="first_name")
+	//@Column(name="first_name")
 	private String firstName;
 	
-	@Column(name="last_name")
+	//@Column(name="last_name")
 	private String lastName;
 	
 	private String designation;
 	
 	private String drqualifications;
 	
-	@Column(name="user_name")
+	//@Column(name="user_name")
 	private String userName;
 	
 	private String password;
 	
 	private String role;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

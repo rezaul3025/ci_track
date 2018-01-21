@@ -33,13 +33,13 @@ public class PrescriptionServiceHandler implements PrescriptionService {
 		
 		prescription.setPrescriptionItem(prescriptionItemList);
 
-		prescriptionRepository.saveAndFlush(prescription);
+		prescriptionRepository.save(prescription);
 		
 		return prescription;
 	}
 	
 	@Override
-	public List<Prescription> findByPatientId(Integer id){
+	public List<Prescription> findByPatientId(String id){
 		return prescriptionRepository.findByPatientId(id);
 	}
 

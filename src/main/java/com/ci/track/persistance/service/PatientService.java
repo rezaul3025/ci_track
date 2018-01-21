@@ -9,5 +9,5 @@ public interface PatientService {
 	
 	List<Patient> getAll();
 	
-	Patient findById(Integer id);
+	Patient findById(String id);
 }

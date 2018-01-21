@@ -7,5 +7,5 @@ import com.ci.track.web.event.PrescriptionInfo;
 
 public interface PrescriptionService {
 	Prescription addPrescription(PrescriptionInfo prescriptionInfo );
-	List<Prescription> findByPatientId(Integer id);
+	List<Prescription> findByPatientId(String id);
 }

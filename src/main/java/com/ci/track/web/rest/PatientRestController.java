@@ -128,7 +128,7 @@ public class PatientRestController {
 	}
 	
 	@RequestMapping(value="/findbyid/{id}", method=RequestMethod.GET)
-	public Patient findByID(@PathVariable("id") Integer id){
+	public Patient findByID(@PathVariable("id") String id){
 		return patientServie.findById(id);
 	}
 }

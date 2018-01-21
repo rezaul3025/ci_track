@@ -2,29 +2,27 @@ package com.ci.track.persistance.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity(name="patient")
+//@Entity(name="patient")
+@Document(collection = "patient")
 public class Patient {
 	
 	@Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+    //@Column(name="id")
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
 	
-	@Column(name="first_name")
+	//@Column(name="first_name")
 	private String firstName;
 	
-	@Column(name="last_name")
+	//@Column(name="last_name")
 	private String lastName;
 	
-	@Column(name="date")
+	//@Column(name="date")
     @JsonFormat(pattern="yyyy-MM-dd" ,locale="de", timezone="GMT+1")
 	private Date dob;
 	
@@ -49,11 +47,11 @@ public class Patient {
 		this.address = address;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

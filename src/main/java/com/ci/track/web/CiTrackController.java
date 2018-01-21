@@ -26,7 +26,7 @@ public class CiTrackController {
 	}
 	
 	@RequestMapping(value="/patient/view/{id}")
-	public String moveViewPatientPage(@PathVariable("id") Integer id, Model model){
+	public String moveViewPatientPage(@PathVariable("id") String id, Model model){
 		model.addAttribute("id", id);
 		return "/patient/view";
 	}
@@ -38,7 +38,7 @@ public class CiTrackController {
 	}
 	
 	@RequestMapping(value="/prescription/add/{id}")
-	public String moveAddPrescriptionPage(@PathVariable("id") Integer id, Model model){
+	public String moveAddPrescriptionPage(@PathVariable("id") String id, Model model){
 		model.addAttribute("id", id);
 		return "/prescription/add";
 	}

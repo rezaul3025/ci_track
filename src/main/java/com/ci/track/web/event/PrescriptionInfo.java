@@ -5,13 +5,13 @@ import java.util.List;
 
 public class PrescriptionInfo {
 	
-	private Integer id;
+	private String id;
 	
-	private Integer doctorId;
+	private String doctorId;
 	
 	private String comments;
 	
-	private Integer patientId;
+	private String patientId;
 	
 	private List<PrescriptionItemInfo> prescriptionItem;
 	
@@ -19,13 +19,13 @@ public class PrescriptionInfo {
 	
 	private Date modifiedDate;
 	
-	private Integer modifiedById;
+	private String modifiedById;
 	
 	public PrescriptionInfo(){
 		
 	}
 	
-	public PrescriptionInfo(List<PrescriptionItemInfo> prescriptionItem, Date date, Integer doctorId, Integer patientId, String comments){
+	public PrescriptionInfo(List<PrescriptionItemInfo> prescriptionItem, Date date, String doctorId, String patientId, String comments){
 		this.prescriptionItem = prescriptionItem;
 		this.date = date;
 		this.doctorId = doctorId;
@@ -49,11 +49,11 @@ public class PrescriptionInfo {
 		this.date = date;
 	}
 
-	public Integer getDoctorId() {
+	public String getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(Integer doctorId) {
+	public void setDoctorId(String doctorId) {
 		this.doctorId = doctorId;
 	}
 	
@@ -70,19 +70,19 @@ public class PrescriptionInfo {
 		this.comments = comments;
 	}
 
-	public Integer getPatientId() {
+	public String getPatientId() {
 		return patientId;
 	}
 
-	public void setPatientId(Integer patientId) {
+	public void setPatientId(String patientId) {
 		this.patientId = patientId;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -94,11 +94,11 @@ public class PrescriptionInfo {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public Integer getModifiedById() {
+	public String getModifiedById() {
 		return modifiedById;
 	}
 
-	public void setModifiedById(Integer modifiedById) {
+	public void setModifiedById(String modifiedById) {
 		this.modifiedById = modifiedById;
 	}
 	
