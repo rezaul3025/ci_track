@@ -65,7 +65,7 @@
 					      </h4>
 					    </div>
 					    <div id="collapsePrescriptionItem{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPrescriptionItem{{$index}}">
-					      <div class="panel-body">
+					      <!-- <div class="panel-body"> -->
 					      	<form class="form-horizontal" name="textFieldForm" ng-submit="submit(textFieldForm);addPrescription(prescription, textFieldForm)">
 		  					<div th:replace="/message/validation.error.message :: validationErrorMessage" />
 						      	<table class="table">
@@ -133,7 +133,7 @@
 							    </table>
 							    </form>
 							    
-					      </div>
+					      <!-- </div> -->
 					    </div>
 					  </div>
 					</div>
