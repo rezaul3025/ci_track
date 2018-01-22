@@ -66,7 +66,7 @@
 					    </div>
 					    <div id="collapsePrescriptionItem{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPrescriptionItem{{$index}}">
 					      <!-- <div class="panel-body"> -->
-					      	<form class="form-horizontal" name="textFieldForm" ng-submit="submit(textFieldForm);addPrescription(prescription, textFieldForm)">
+					      	<!-- <form class="form-horizontal" name="textFieldForm" ng-submit="submit(textFieldForm);addPrescription(prescription, textFieldForm)">
 		  					<div th:replace="/message/validation.error.message :: validationErrorMessage" />
 						      	<table class="table">
 								    <tr>
@@ -95,9 +95,9 @@
 											  <input type="radio" name="doseOptions{{$index}}" id="doseOptions001" ng-model="presItem.dose" value="0+0+1" required=""/> 0+0+1
 											</label>
 											
-											<!-- <label class="radio-inline">
+											<label class="radio-inline">
 											  <input type="radio" name="doseOptions{{$index}}" id="doseOptionsOthers" ng-model="presItem.dose" value="others" /> others
-											</label> -->
+											</label>
 											<label class="radio-inline">
 												Others :
 												<input type="text" name="othersDose{{$index}}" id="othersDose" ng-model="presItem.othersDose"  />
@@ -143,7 +143,43 @@
 								    	</td>
 								    </tr> 
 							    </table>
-							    </form>
+							    </form> -->
+							    
+							    <table class="table">
+								    <tr>
+								    	<th style="background-color: #fcf8e3">Description</th>
+								    	<th style="background-color: #fcf8e3">Dose</th>
+								    </tr>
+								    <tr ng-repeat="presItem in pres.prescriptionItem" >
+								    	<td style="background-color: #dff0d8;font-style: italic;font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace">
+								    		{{presItem.description}}
+								      	</td>
+								    	<td style="background-color: #dff0d8;font-style: italic;font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace">
+								    		{{presItem.dose}}
+								    		
+											{{presItem.othersDose}}
+								    	</td>
+								    </tr> 
+								    <tr>
+								    	<td style="background-color: #dff0d8">
+								    		<strong>Any comments</strong>
+								    	</td>
+								    	<td style="background-color: #dff0d8">
+								    		{{pres.comments}}
+				 				    	</td>
+								    	
+								    </tr>
+								    <tr>
+								    	<td style="background-color: #fcf8e3">
+								    		<strong>Prescribed By:</strong>
+								    	</td>
+								    	<td style="background-color: #fcf8e3;font-style: italic;">
+								    			{{doctorsIdMap[pres.doctorId].title}} {{doctorsIdMap[pres.doctorId].firstName}} {{doctorsIdMap[pres.doctorId].lastName}} <br/>
+								    			{{doctorsIdMap[pres.doctorId].drqualifications}}
+				 				    	</td>
+								    	
+								    </tr>
+							    </table>
 							    
 					      <!-- </div> -->
 					    </div>

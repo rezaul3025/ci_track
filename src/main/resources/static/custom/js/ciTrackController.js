@@ -43,6 +43,46 @@ module.controller('CiTrackController', ['$http', '$scope', '$window', '$controll
         		window.location.href = 'healthcare/login';
         	}
         }*/
+	    
+$scope.loadAllPatient = function(idf){
+        	
+        	$scope.idf = idf;
+        	
+        	$http({
+                method: "GET",
+                url: "/rest/patient/get-all",
+                params: {}
+            }).then(function succes(response) {
+                $scope.patients = response.data;
+               
+                $(document).ready(function() {
+                	
+                	var patientListTableShort = $('#patientsShort').DataTable(
+                			{
+                		        "pagingType": "simple"
+                		    }
+                	);
+                	
+                	$("#patientsShort_length").parent().remove();
+                	$("#patientsShort_info").parent().removeClass('col-sm-5');
+                	$("#patientsShort_paginate").parent().removeClass('col-sm-7');
+                	$("#patientsShort_paginate").parent().addClass('col-sm-10');
+                	/*var patientDTinfo = $("#patientsShort_info").parent().html();
+                	var patientDTpaginateInfo = $("#patientsShort_paginate").parent().html();
+                	//$("#patientsShort_paginate").parent().parent().remove();
+                	$("#patientsShort_wrapper").append("<div class='row'><div class='col-sm-12'>"+patientDTinfo+"</div></div>");
+                	$("#patientsShort_wrapper").append("<div class='row'><div class='col-sm-12'>"+patientDTpaginateInfo+"</div></div>");
+                	*/
+                	$('#patientsShort tbody').on( 'click', '#viewMore', function () {
+                        var data = patientListTableShort.row( $(this).parents('tr') ).data();
+                        //alert( 'patient id is : '+data.id );
+                        location.href = '/patient/view/'+data.id;
+                    } );
+                } );
+                
+            }, function error(response) {
+            });
+        };
 
     }])
     
