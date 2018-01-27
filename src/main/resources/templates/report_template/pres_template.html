@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style th:inline="text">
+        /*<![CDATA[*/
+        /* header and footer */
+
+        div.header {
+            display: block;
+            position: running(header);
+        }
+
+        div.footer {
+            display: block;
+            position: running(footer);
+        }
+
+        /*div.content {*/
+            /*page-break-after: always;*/
+        /*}*/
+
+        @page {
+            /* background-image: url("[[${baseUrl}]]/static/images/Helix_background.jpg"); */
+        }
+
+        @page {
+            display: inline-block;
+            @top-center {
+                content: element(header)
+            }
+        }
+
+        @page {
+            display: inline-block;
+            @bottom-center {
+                content: element(footer)
+            }
+        }
+
+        @page {
+            display: inline-block;
+            counter-increment: page;
+            counter-reset: page 1;
+            font-size: 10px;
+            @bottom-left {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        }
+
+        /* ######### */
+
+        .smallFont {
+            font-size: 10px;
+        }
+
+        .positionLeft50 {
+            margin-left: 50px;
+        }
+
+        .textAlignRight {
+            text-align: right;
+        }
+
+        .positionCenter {
+            margin: 0 auto;
+            width: 100px;
+            display: inline-block;
+            overflow: hidden;
+
+        }
+
+        .positionRight {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+        }
+
+        .marginTop50 {
+            margin-top: 50px;
+        }
+
+        .marginTop100 {
+            margin-top: 100px;
+        }
+
+        .titleText {
+            color: #D41030;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .pageText {
+            color: #D41030;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .firstPageTableStyle {
+            width: 100%;
+            font-size: 16px;
+            border-collapse: collapse;
+        }
+
+        .geneInfoTableStyle {
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        .geneInfoTableStyle td, .geneInfoTableStyle th {
+            font-size: 12px;
+            border: 0.5px solid #000000;
+        }
+
+        #variantInfoTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #variantInfoTable td, #variantInfoTable th {
+            font-size: 10px;
+            border: 0.5px solid #000000;
+            text-align: center;
+        }
+
+        .tableRedHeader {
+            font-size: 10px;
+            text-align: center;
+            background-color: #D41030;
+            font-weight: bold;
+            color: white;
+            border: 0.5px solid #000000;
+        }
+
+        .tableGreyHeader {
+            font-size: 10px;
+            text-align: center;
+            background-color: rgb(125, 123, 123);
+            font-weight: bold;
+            color: white;
+            border: 0.5px solid #000000;
+        }
+
+        #variantInfoTable tfoot td {
+            border-collapse: collapse;
+            border: 0px;
+            text-align: left;
+        }
+
+        .legenTableStyle {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .legenTableStyle td, .legenTableStyle th {
+            font-size: 12px;
+            border: 0.5px solid #000000;
+            /*
+            border-top:0.5px solid #D41030;
+            border-bottom:0.5px solid #D41030;
+            border-left:0.5px solid rgb(212,212,212);
+            border-right:0.5px solid rgb(212,212,212);
+            */
+        }
+
+        .redBold {
+            font-weight: bold;
+            color: #D41030;
+        }
+
+        .userProvidedContent {
+            color: #2d89ef;
+        }
+
+        table {
+            -fs-table-paginate: paginate;
+            border-spacing: 0;
+        }
+
+        tr {
+            page-break-inside:avoid;
+            page-break-after:auto
+        }
+
+        #userCommentArea {
+            width: 100%;
+            word-wrap: break-word
+        }
+
+        /*]]>*/
+    </style>
+</head>
+
+<body>
+
+<div class='header'>
+    <!-- <img style="width:150px" class="positionLeft" th:attr="src='__${baseUrl}__/static/cglogo.png'"
+         alt="Centogene logo"></img> -->
+			<!-- <span class="positionRight">
+				<table class="smallFont">
+                    <tbody>
+                    <tr>
+                        <td>Transaction ID:</td>
+                        <td><span th:text="${issuingUserBusinessPartnerId}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+			</span> -->
+</div>
+<div class='footer'>
+    <!-- <img style="width:100px" class="positionCenter"
+         th:attr="src='__${baseUrl}__/static/images/centoMD.png'" alt="Centogene logo"></img> -->
+			<!-- <span class="positionRight">
+				<table class="smallFont textAlignRight">
+                    <tbody>
+                    <tr>
+                        <td>Genetic summary issued for <span th:text="${issuingTitle}"></span>&#160;<span
+                                th:text="${issuingUserFirstName}"></span>&#160;<span
+                                th:text="${issuingUserLastName}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>on <span th:text="${issuingTimestamp}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+			</span> -->
+
+</div>
+<div class='content'>
+    <!-- <div>
+        <img style="width:250px" class="positionLeft"
+             th:attr="src='__${baseUrl}__/static/images/centoMD.png'" alt="Centogene logo"></img>
+        <span class="titleText"> Genetic summary</span>
+    </div> -->
+    <div class="marginTop50">
+        <table class="firstPageTableStyle redBold">
+            <tbody>
+            <tr>
+                <td>Description</td>
+                <td>Does</td>
+            </tr>
+            <tr th:each="prescriptionItem , rowInfo : ${prescription.getPrescriptionItem()}">
+                <td>
+                    <span th:text="${prescriptionItem.description}"></span>.&#160;
+                   
+                </td>
+                 <td>
+                    <span th:text="${prescriptionItem.dose}"></span>.&#160;
+                    
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -60,7 +60,7 @@
 					    <div class="panel-heading" role="tab" id="headingPrescriptionItem{{$index}}">
 					      <h4 class="panel-title">
 					        <a role="button" data-toggle="collapse" data-parent="#prescriptionItemAccordion" href="#collapsePrescriptionItem{{$index}}" aria-expanded="true" aria-controls="collapsePrescriptionItem{{$index}}">
-					          Date: {{pres.date}} ({{pres.patientId}})
+					          Date &amp; time: {{pres.date}} ({{doctorsIdMap[pres.doctorId].title}} {{doctorsIdMap[pres.doctorId].firstName}} {{doctorsIdMap[pres.doctorId].lastName}})
 					        </a>
 					      </h4>
 					    </div>
@@ -162,7 +162,7 @@
 								    </tr> 
 								    <tr>
 								    	<td style="background-color: #dff0d8">
-								    		<strong>Any comments</strong>
+								    		<strong>Any comments:</strong>
 								    	</td>
 								    	<td style="background-color: #dff0d8">
 								    		{{pres.comments}}
