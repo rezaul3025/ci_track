@@ -28,6 +28,8 @@ public class Prescription {
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm" ,locale="de", timezone="GMT+1")
 	private Date date;
 	
+	private String prescriptionPdfId;
+	
 	//@Column(name="modified_date")
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm" ,locale="de", timezone="GMT+1")
 	private Date modifiedDate;
@@ -115,6 +117,14 @@ public class Prescription {
 		this.modifiedById = modifiedById;
 	}
 	
+	public String getPrescriptionPdfId() {
+		return prescriptionPdfId;
+	}
+
+	public void setPrescriptionPdfId(String prescriptionPdfId) {
+		this.prescriptionPdfId = prescriptionPdfId;
+	}
+
 	@Override
 	public String toString(){
 		return this.prescriptionItem+" "+this.date+" "+this.doctorId;

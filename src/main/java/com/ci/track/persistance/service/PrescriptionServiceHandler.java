@@ -2,20 +2,18 @@ package com.ci.track.persistance.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
@@ -30,6 +28,7 @@ import com.ci.track.web.event.PrescriptionItemInfo;
 import com.lowagie.text.DocumentException;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import com.mongodb.gridfs.GridFSDBFile;
 
 @Service
 public class PrescriptionServiceHandler implements PrescriptionService {
@@ -57,9 +56,11 @@ public class PrescriptionServiceHandler implements PrescriptionService {
 		
 		prescription.setPrescriptionItem(prescriptionItemList);
 
-		prescriptionRepository.save(prescription);
+		String prescriptionPdfId = generatePrescriptionPdf(prescription);
 		
-		generatePrescriptionPdf(prescription);
+		prescription.setPrescriptionPdfId(prescriptionPdfId);
+		
+		prescriptionRepository.save(prescription);
 		
 		return prescription;
 	}
@@ -103,6 +104,10 @@ public class PrescriptionServiceHandler implements PrescriptionService {
 
 		
 		return id;
+	}
+	
+	public GridFSDBFile getPrescriptionPdfById(String id) {
+		  return this.gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
 	}
 
 }
