@@ -42,4 +42,10 @@ public class UserServiceHandler implements UserService {
 		return users;
 	}
 
+	@Override
+	public User findById(String id) {
+		// TODO Auto-generated method stub
+		return userRepository.findById(id);
+	}
+
 }

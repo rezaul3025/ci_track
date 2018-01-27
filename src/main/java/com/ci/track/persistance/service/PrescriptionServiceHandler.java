@@ -5,7 +5,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -20,8 +24,10 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
+import com.ci.track.persistance.domain.Patient;
 import com.ci.track.persistance.domain.Prescription;
 import com.ci.track.persistance.domain.PrescriptionItem;
+import com.ci.track.persistance.domain.User;
 import com.ci.track.persistance.repo.PrescriptionRepository;
 import com.ci.track.web.event.PrescriptionInfo;
 import com.ci.track.web.event.PrescriptionItemInfo;
@@ -41,6 +47,12 @@ public class PrescriptionServiceHandler implements PrescriptionService {
 	
 	@Autowired
 	private GridFsTemplate gridFsTemplate;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private PatientService patientService;
 	
 	@Override
 	public Prescription addPrescription(PrescriptionInfo prescriptionInfo ){
@@ -76,10 +88,17 @@ public class PrescriptionServiceHandler implements PrescriptionService {
 	    ctx.setLocale(Locale.US);
 	    
 	 // Report date
-	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd, HH:mm");
-	    sdf.setTimeZone(TimeZone.getTimeZone("GMT+6"));
-	    //ctx.setVariable("issuingTimestamp", sdf.format(LocalDate.now()));
+	    LocalDateTime now = LocalDateTime.now();
+        System.out.println("Before : " + now);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formatDateTime = now.format(formatter);
+	   // sdf.setTimeZone(TimeZone.getTimeZone("GMT+6"));
+	    ctx.setVariable("issuingTimestamp", formatDateTime);
 	    ctx.setVariable("prescription", prescription);
+	    User user = userService.findById(prescription.getDoctorId());
+	    ctx.setVariable("user", user);
+	    Patient patient = patientService.findById(prescription.getPatientId());
+	    ctx.setVariable("patient", patient);
 	    String htmlContent = templateEngine.process("report_template/pres_template", ctx);
 
 	    // Data Report End

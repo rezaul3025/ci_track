@@ -188,6 +188,10 @@
             width: 100%;
             word-wrap: break-word
         }
+        
+        .mainTableBorder{
+        	border: 1px solid black;
+        }
 
         /*]]>*/
     </style>
@@ -235,21 +239,55 @@
         <span class="titleText"> Genetic summary</span>
     </div> -->
     <div class="marginTop50">
-        <table class="firstPageTableStyle redBold">
+        <table class="mainTableBorder">
             <tbody>
             <tr>
-                <td>Description</td>
-                <td>Does</td>
+                <td>ID: #442224, License: #5353535353</td>
             </tr>
-            <tr th:each="prescriptionItem , rowInfo : ${prescription.getPrescriptionItem()}">
-                <td>
-                    <span th:text="${prescriptionItem.description}"></span>.&#160;
-                   
+            <tr>
+                <td style="text-align: center;padding-bottom: 25px;">
+                	<span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span><br/>
+                	<span th:text="${user.drqualifications}"></span>
                 </td>
-                 <td>
-                    <span th:text="${prescriptionItem.dose}"></span>.&#160;
-                    
+            </tr>
+            <tr>
+                <td style="text-align: center;padding-bottom: 15px;">
+                	<table>
+                		<tr>
+                			<td>Name</td><td th:text="${patient.firstName}+' '+${patient.lastName}"></td>
+                			<td>Date of birth</td><td th:text="${patient.dob}"></td>
+                		</tr>
+                		<tr>
+                			<td>Address</td><td th:text="${patient.address}"></td>
+                			<td>Age</td><td th:text="${patient.age}"></td>
+                		</tr>
+                		<tr>
+                			<td>Weight</td><td th:text="${patient.weight}"></td>
+                			<td>Sex</td><td th:text="${patient.gender}"></td>
+                		</tr>
+                		<tr>
+                			<td>Height</td><td th:text="${patient.height}"></td>
+                			<td>Date</td><td th:text="${issuingTimestamp}"></td>
+                		</tr>
+                	</table>
                 </td>
+            </tr>
+            <tr>
+	            <td style="text-align: center;">
+	            	<table>
+			            <tr th:each="prescriptionItem , rowInfo : ${prescription.getPrescriptionItem()}">
+			                <td>
+			                    <span th:text="${prescriptionItem.description}"></span>
+			                </td>
+			                 <td>
+			                    <span th:text="${prescriptionItem.dose}"></span>
+			                </td>
+			            </tr>
+		            </table>
+	            </td>
+            </tr>
+            <tr>
+            	
             </tr>
             </tbody>
         </table>
