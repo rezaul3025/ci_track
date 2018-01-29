@@ -177,6 +177,7 @@
         table {
             -fs-table-paginate: paginate;
             border-spacing: 0;
+            width: 100%;
         }
 
         tr {
@@ -189,8 +190,11 @@
             word-wrap: break-word
         }
         
-        .mainTableBorder{
+        .mainTable{
         	border: 1px solid black;
+        	background-color: #dff0d8;
+        	font-size:13px;
+        	padding:4PX;
         }
 
         /*]]>*/
@@ -239,23 +243,27 @@
         <span class="titleText"> Genetic summary</span>
     </div> -->
     <div class="marginTop50">
-        <table class="mainTableBorder">
+        <table class="mainTable" >
             <tbody>
             <tr>
-                <td>ID: #442224, License: #5353535353</td>
+                <td style="text-align: center;;padding-bottom:15px;">ID: #442224, License: #5353535353</td>
             </tr>
             <tr>
                 <td style="text-align: center;padding-bottom: 25px;">
-                	<span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span><br/>
-                	<span th:text="${user.drqualifications}"></span>
+                	
+                	<span style="font-size:15px;" th:text="${user.firstName}+' '+${user.lastName}"></span> <br/>
+                	<span style="font-size:15px;" th:text="${user.drqualifications}"></span>
+                	
                 </td>
             </tr>
             <tr>
-                <td style="text-align: center;padding-bottom: 15px;">
+                <td style="padding-bottom: 15px;font-size:12px;border-top: 1px solid black;" >
                 	<table>
                 		<tr>
-                			<td>Name</td><td th:text="${patient.firstName}+' '+${patient.lastName}"></td>
-                			<td>Date of birth</td><td th:text="${patient.dob}"></td>
+                			<td>Name</td>
+                			<td th:text="${patient.firstName}+' '+${patient.lastName}"></td>
+                			<td>Date of birth</td>
+                			<td th:text="${dob}"></td>
                 		</tr>
                 		<tr>
                 			<td>Address</td><td th:text="${patient.address}"></td>
@@ -273,8 +281,13 @@
                 </td>
             </tr>
             <tr>
-	            <td style="text-align: center;">
-	            	<table>
+            	<td style="border-top: 1px solid black;">
+            		R<sub>X</sub>
+            	</td>
+            </tr>
+            <tr>
+	            <td style="padding-left: 20px;">
+	            	<table style="font-size:12px;font-style: italic;font-family: 'Courier New', Courier;">
 			            <tr th:each="prescriptionItem , rowInfo : ${prescription.getPrescriptionItem()}">
 			                <td>
 			                    <span th:text="${prescriptionItem.description}"></span>

@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -93,12 +94,15 @@ public class PrescriptionServiceHandler implements PrescriptionService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formatDateTime = now.format(formatter);
 	   // sdf.setTimeZone(TimeZone.getTimeZone("GMT+6"));
+       
 	    ctx.setVariable("issuingTimestamp", formatDateTime);
 	    ctx.setVariable("prescription", prescription);
 	    User user = userService.findById(prescription.getDoctorId());
 	    ctx.setVariable("user", user);
 	    Patient patient = patientService.findById(prescription.getPatientId());
 	    ctx.setVariable("patient", patient);
+	    LocalDate dobLocalDate= patient.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	    ctx.setVariable("dob", dobLocalDate.toString());
 	    String htmlContent = templateEngine.process("report_template/pres_template", ctx);
 
 	    // Data Report End
