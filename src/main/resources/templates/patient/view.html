@@ -57,10 +57,12 @@
       			<div class="panel-body">
       				<div class="panel-group" id="prescriptionItemAccordion" role="tablist" aria-multiselectable="true">
 					  <div class="panel panel-default" ng-repeat="pres in prescriptions">
-					    <div class="panel-heading" role="tab" id="headingPrescriptionItem{{$index}}">
+					    <div class="panel-heading" role="tab" id="headingPrescriptionItem{{$index}}" style="{{prescriptions.length > 1 &amp;&amp; 0 == $index?'color:green':''}}">
 					      <h4 class="panel-title">
-					        <a role="button" data-toggle="collapse" data-parent="#prescriptionItemAccordion" href="#collapsePrescriptionItem{{$index}}" aria-expanded="true" aria-controls="collapsePrescriptionItem{{$index}}">
+					        <a role="button" data-toggle="collapse" data-parent="#prescriptionItemAccordion" 
+					        href="#collapsePrescriptionItem{{$index}}" aria-expanded="true" aria-controls="collapsePrescriptionItem{{$index}}">
 					          Date &amp; time: {{pres.date}} ({{doctorsIdMap[pres.doctorId].title}} {{doctorsIdMap[pres.doctorId].firstName}} {{doctorsIdMap[pres.doctorId].lastName}})
+					          {{prescriptions.length > 1 &amp;&amp; 0 == $index?' - Latest':''}}
 					        </a>
 					      </h4>
 					    </div>

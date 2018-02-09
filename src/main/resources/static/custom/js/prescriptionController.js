@@ -10,6 +10,9 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
 		
 		$scope.init = function(id, userId){
         	$scope.patientId = id;
+        	
+        	$scope.patientById(id);
+        	
         	$scope.userId = userId;
         }
 		
@@ -56,6 +59,18 @@ module.controller('PrescriptionController', ['$http', '$scope', '$window', '$con
 		$scope.resetDoes = function(index){
 			$('input:radio[name=doseOptions'+index+']').each(function () { $(this).prop('checked', false); });
 		}
+		
+		$scope.patientById = function(id){
+        	$http({
+                method: "GET",
+                url: "/rest/patient/findbyid/"+id,
+                params: {}
+            }).then(function succes(response) {
+                $scope.patient = response.data;
+                
+            }, function error(response) {
+            });
+        };
 
     }]);
     

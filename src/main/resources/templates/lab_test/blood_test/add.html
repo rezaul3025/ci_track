@@ -1,0 +1,67 @@
+<html lang="en" layout:decorator="/layout" ng-app="ciTrackApp">
+<head>
+</head>
+<body ng-controller="LabTestController" th:attr="ng-init='init(\''+${id}+'\',\''+${#authentication.getPrincipal().getUser().getId()}+'\')'">
+	<div layout:fragment="sidebar">
+		<h2>Side bar {{patientId}}, {{userId}}
+		</h2>
+	</div>
+	<div layout:fragment="content" >
+		<div class="media">
+		  <div class="media-left">
+		    <a href="#">
+		      <img class="media-object" th:src="@{/images/prescription2.jpeg}" width="20" height="20" alt="Prescription icon"/>
+		    </a>
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">Add blood test result for <a style="font-style: italic;" href="/patient/view/{{patient.id}}">{{patient.firstName}} {{patient.lastName}} ({{patient.dob}})</a></h4>
+		    
+		  </div>
+		</div>
+		
+		<!--  -->
+		<form class="form-horizontal" name="textFieldForm" ng-submit="submit(textFieldForm);addPrescription(prescription, textFieldForm)">
+		  <div th:replace="/message/validation.error.message :: validationErrorMessage" />
+		  	{{labBloodTestResults}}
+			  <table class="table">
+				    <tr>
+				    	<th>Test name</th>
+				    	<th>Unit</th>
+				    	<th>Standard Value</th>
+				    	<th>Result</th>
+				    	<th></th>
+				    </tr>
+				    <tr ng-repeat="labBTR in labBloodTestResults">
+				    	<td>
+				    		<!-- <pre>Model: {{labBTR.name | json}}</pre> -->
+    						<input type="text" ng-model="labBTR.name" uib-typeahead="state.name for state in labBloodTestStValues | filter:$viewValue | limitTo:8" class="form-control"
+    						typeahead-on-select="loadSelectedTestDetials($item, $model, $label, $event, $index)" />
+		  				</td>
+				    	<td>
+				    		<select ng-model="labBTR.unitSelected" name="unit" ng-options="u for u in labBTR.units" ng-change="loadSelectedTestStdValues($index,labBTR.unitSelected, labBTR.unitsArrOb)"></select>
+				    		<!-- <span ng-repeat="u in labBTR.unit">
+					    		<label class="radio-inline">
+								  <input type="radio" name="unitSelect" id="unit{{$index}}" ng-model="labBTR.unit" value="{{u.name}}" required=""/> {{u.name}}
+								</label>
+							</span> -->
+				    	</td>
+				    	<td>
+				    		<select ng-model="labBTR.selectedStdValues" name="stdValue" ng-options="st for st in labBTR.stdValues" ></select>
+				    		<!-- <label class="radio-inline">
+							  <input type="radio" name="stdValue{{$index}}" id="stdValue{{$index}}" ng-model="labBTR.stdValue" value="1+1+1" required=""/> 1+1+1
+							</label> -->
+				    	</td>
+				    	<td>
+		  					<input type="text" ng-model="labBTR.result" placeholder="{{labBTR.unitSelected}}" /> {{labBTR.unitSelected}}
+		  				</td>
+				    	<td>
+				    		<button ng-if="$index+1 == labBloodTestResults.length" ng-click="addMoreLabBloodTest()"  class="btn btn-default" >More >></button>
+				    		<button ng-if="$index+1 != labBloodTestResults.length" ng-click="removeLabBloodTest($index)"  class="btn btn-default" >Remove X</button>
+				    	</td>
+				    </tr> 
+			    </table> 
+		</form>
+		<script th:src="@{/custom/js/labTestController.js}"></script>
+	</div>
+</body>
+</html>

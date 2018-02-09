@@ -43,6 +43,14 @@ public class CiTrackController {
 		return "/prescription/add";
 	}
 	
+	@RequestMapping(value="/lab/test/{iden}/{id}")
+	public String moveAddLabTestPage(@PathVariable("iden") String iden, @PathVariable("id") String id, Model model){
+		model.addAttribute("id", id);
+		
+		
+		return "/lab_test/blood_test/add";
+	}
+	
 	@RequestMapping(value="/user/add")
 	public String moveAddUserPage(Model model){
 		return "/user/add";

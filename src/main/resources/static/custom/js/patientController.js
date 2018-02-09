@@ -168,7 +168,7 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                 		            "targets": 8,
                 		            "data": null,
                 		            "orderable": false,
-                		            "defaultContent": "<a id='addprescription' class ='btn btn-default' href='#'>Add Prescription</a><br/><a style='margin-top:3px;' class='btn btn-default' id='addprescription' href='#'>Add test</a>"
+                		            "defaultContent": "<a id='addprescription' class ='btn btn-default' href='#'>Add Prescription</a><br/><a style='margin-top:3px;' class='btn btn-default' id='addlabtest' href='#'>Add lab test</a>"
                 		        } ]
                 		    }
                 	);
@@ -178,6 +178,13 @@ module.controller('PatientController', ['$http', '$scope', '$window', '$controll
                         //alert( 'patient id is : '+data.id );
                         location.href = '/prescription/add/'+data.id;
                     } );
+                	
+                	$('#patients tbody').on( 'click', '#addlabtest', function () {
+                        var data = patientListTable.row( $(this).parents('tr') ).data();
+                        //alert( 'patient id is : '+data.id );
+                        location.href = '/lab/test/blood/'+data.id;
+                    } );
+                	
                 	
                 	var patientListTableShort = $('#patientsShort').DataTable(
                 			{

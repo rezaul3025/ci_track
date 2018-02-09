@@ -246,7 +246,7 @@
         <table class="mainTable" >
             <tbody>
             <tr>
-                <td style="text-align: center;;padding-bottom:15px;">ID: #442224, License: #5353535353</td>
+                <td style="text-align: center;padding-bottom:7px;">ID: #442224, License: #5353535353</td>
             </tr>
             <tr>
                 <td style="text-align: center;padding-bottom: 25px;">
@@ -257,7 +257,7 @@
                 </td>
             </tr>
             <tr>
-                <td style="padding-bottom: 15px;font-size:12px;border-top: 1px solid black;" >
+                <td style="padding-bottom: 15px;padding-top:7px;font-size:12px;border-top: 1px solid black;" >
                 	<table>
                 		<tr>
                 			<td>Name</td>
@@ -270,18 +270,18 @@
                 			<td>Age</td><td th:text="${patient.age}"></td>
                 		</tr>
                 		<tr>
-                			<td>Weight</td><td th:text="${patient.weight}"></td>
+                			<td>Weight</td><td th:text="${patient.weight}+'kg'"></td>
                 			<td>Sex</td><td th:text="${patient.gender}"></td>
                 		</tr>
                 		<tr>
-                			<td>Height</td><td th:text="${patient.height}"></td>
+                			<td>Height</td><td th:text="${patient.height}+'cm'"></td>
                 			<td>Date</td><td th:text="${issuingTimestamp}"></td>
                 		</tr>
                 	</table>
                 </td>
             </tr>
             <tr>
-            	<td style="border-top: 1px solid black;">
+            	<td style="font-size:25px;font-style: italic;">
             		R<sub>X</sub>
             	</td>
             </tr>
@@ -293,9 +293,7 @@
 			                    <span th:text="${prescriptionItem.description}"></span>
 			                </td>
 			                 <td>
-			                    <span th:text="${prescriptionItem.dose}"></span>
-			                </td>
-			                <td>
+			                    <span th:text="${prescriptionItem.dose}"></span>	
 			                    <span th:text="${prescriptionItem.othersDose}"></span>
 			                </td>
 			            </tr>
@@ -303,7 +301,28 @@
 	            </td>
             </tr>
             <tr>
-            	
+            	<td align="center" style="padding-top: 60px;padding-bottom: 15px;">
+            		<table style=" width: 100%;">
+            			<tr>
+            				<td>
+            					<span style="border-bottom: 1px solid black;">Refill: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            				</td>
+            				<td>
+            					<span style="border-top: 1px solid black;">&nbsp; (Signature) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            				</td>
+            			</tr>
+            		</table>
+            	</td>
+            </tr>
+            <tr>
+            	<td style="tpadding-bottom: 10px;text-align: center;">
+	            		<div style="width:100%;position: relative;">
+	            			<div style="border: 1px solid black;width:15%;height:50px;margin: 0 auto;position: relative;">
+	            			
+	            			</div>
+	            		</div>
+	            		<span>Seal</span>
+            	</td>
             </tr>
             </tbody>
         </table>

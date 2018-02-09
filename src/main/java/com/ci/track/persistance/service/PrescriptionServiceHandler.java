@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -80,7 +81,7 @@ public class PrescriptionServiceHandler implements PrescriptionService {
 	
 	@Override
 	public List<Prescription> findByPatientId(String id){
-		return prescriptionRepository.findByPatientId(id);
+		return prescriptionRepository.findByPatientIdOrderByDateDesc(id);
 	}
 
 	@Override
@@ -104,6 +105,7 @@ public class PrescriptionServiceHandler implements PrescriptionService {
 	    LocalDate dobLocalDate= patient.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	    ctx.setVariable("dob", dobLocalDate.toString());
 	    String htmlContent = templateEngine.process("report_template/pres_template", ctx);
+	    htmlContent = StringEscapeUtils.unescapeHtml4(htmlContent);
 
 	    // Data Report End
 	    ITextRenderer renderer = new ITextRenderer();

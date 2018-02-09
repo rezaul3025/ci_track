@@ -9,5 +9,5 @@ import com.ci.track.persistance.domain.Prescription;
 
 @Repository
 public interface PrescriptionRepository extends MongoRepository<Prescription, String>{
-	List<Prescription> findByPatientId(String id);
+	List<Prescription> findByPatientIdOrderByDateDesc(String id);
 }
