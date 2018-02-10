@@ -91,14 +91,14 @@ module.controller('LabTestController', ['$http', '$scope', '$window', '$controll
 			
 			$scope.labBloodTestResults[index]['unitsArrOb']=item.unit;
 			
-			for(var lbt in $scope.labBloodTestStValues){
+			/*for(var lbt in $scope.labBloodTestStValues){
 				for(var lbtr in $scope.labBloodTestResults){
 					if($scope.labBloodTestStValues[lbt].name==$scope.labBloodTestResults[lbtr].name){
 						$scope.labBloodTestStValues.splice(lbt, 1);
 						break;
 					}
 				}
-			}
+			}*/
 		}
 		
 		$scope.loadSelectedTestStdValues=function(index, selectedUnit, units){
@@ -118,6 +118,15 @@ module.controller('LabTestController', ['$http', '$scope', '$window', '$controll
 		
 		$scope.removeLabBloodTest = function(index){
 			$scope.labBloodTestResults.splice(index, 1);
+		}
+		
+		$scope.testNameFilter = function(supplier, viewValue){
+			for(var lbtr in $scope.labBloodTestResults){
+				if(supplier==$scope.labBloodTestResults[lbtr].name){
+					return "";
+				}
+			}
+			return supplier;
 		}
 		
 		$scope.patientById = function(id){

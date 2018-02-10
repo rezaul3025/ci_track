@@ -34,7 +34,7 @@
 				    <tr ng-repeat="labBTR in labBloodTestResults">
 				    	<td>
 				    		<!-- <pre>Model: {{labBTR.name | json}}</pre> -->
-    						<input type="text" ng-model="labBTR.name" uib-typeahead="state.name for state in labBloodTestStValues | filter:$viewValue | limitTo:8" class="form-control"
+    						<input type="text" ng-model="labBTR.name" uib-typeahead="state.name for state in labBloodTestStValues | filter:{name:$viewValue}:testNameFilter | limitTo:8" class="form-control"
     						typeahead-on-select="loadSelectedTestDetials($item, $model, $label, $event, $index)" />
 		  				</td>
 				    	<td>
